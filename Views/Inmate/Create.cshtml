@@ -1,0 +1,101 @@
+﻿@model PrisonAdministrationSystem.Models.InmateFormViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Inmate", FormMethod.Post, new { encType = "multipart/form-data"}))
+{
+@Html.AntiForgeryToken() 
+
+<div class="form-group">
+    @Html.LabelFor(p=>p.Cell)
+    @Html.DropDownListFor(p=>p.Cell, new SelectList(Model.Cells, "Id", "Id"), "", new {@class="form-control"})
+    @Html.ValidationMessageFor(p=>p.Cell)
+</div>
+<div class="form-group">
+    @Html.LabelFor(p => p.Age)
+    @Html.TextBoxFor(p => p.Age, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Age)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.DateOfIncarceration)
+    @Html.TextBoxFor(p => p.DateOfIncarceration, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.DateOfIncarceration)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.TimeOfIncarceration)
+    @Html.TextBoxFor(p => p.TimeOfIncarceration, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.TimeOfIncarceration)
+
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(p => p.FirstName)
+    @Html.TextBoxFor(p => p.FirstName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.FirstName)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.MiddleName)
+    @Html.TextBoxFor(p => p.MiddleName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.MiddleName)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.LastName)
+    @Html.TextBoxFor(p => p.LastName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.LastName)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Gender)
+    @Html.TextBoxFor(p => p.Gender, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Gender)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Offense)
+    @Html.TextBoxFor(p => p.Offense, new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Offense)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(p => p.Sentence)
+    @Html.TextBoxFor(p => p.Sentence, new { @class = "form-control" , placeholder= "2 years or days or months"})
+    @Html.ValidationMessageFor(p => p.Sentence)
+</div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FrontProfile)
+        @Html.TextBoxFor(m=>m.FrontProfile, new {type="file", @class="form-control"})
+        @Html.ValidationMessageFor(p=>p.FrontProfile)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SideProfile)
+        @Html.TextBoxFor(m=>m.SideProfile, new {type="file", @class="form-control"})
+        @Html.ValidationMessageFor(p=>p.SideProfile)
+
+    </div>
+
+<button type="submit" class="btn btn-primary">Save</button> 
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

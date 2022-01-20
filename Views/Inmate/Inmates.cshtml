@@ -1,0 +1,24 @@
+﻿@model PrisonAdministrationSystem.Models.InmatesViewModel
+@{
+    ViewBag.Title = "Inmates";
+}
+
+<h2>Inmates</h2>
+<ul>
+    @foreach (var inmates in Model.Inmates)
+    {
+        <li>
+            <div class="Profile">
+                <img class="Preview" src="~/Content/Inmate/FrontProfile/@inmates.FrontProfile"/>
+            </div>
+            
+            <div class="Summary">
+                <span class="InmateName">
+                    @(String.Format(inmates.FirstName + " " + inmates.MiddleName + " " + inmates.LastName )) 
+                </span>
+                <p>@inmates.CellId</p>
+            </div>
+        </li>
+    }
+</ul>
+
