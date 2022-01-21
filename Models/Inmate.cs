@@ -60,7 +60,8 @@ namespace PrisonAdministrationSystem.Models
             var str =Sentence;
             if (values.Any(str.Contains))
             {
-                DateOfRelease = null;
+                DateOfRelease = "";
+                return;
             }
             var date = Sentence;
             date = date.ToLower();

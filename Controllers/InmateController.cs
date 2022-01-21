@@ -53,7 +53,6 @@ namespace PrisonAdministrationSystem.Controllers
                 DateOfIncarceration = formViewModel.GetDateTime(),
                 
             };
-            inmate.GetDateOfRelease();
             
             if (formViewModel.FrontProfile != null)
             {
@@ -66,11 +65,14 @@ namespace PrisonAdministrationSystem.Controllers
                     inmate.SideProfile = string.Format(inmate.Id+ Path.GetFileName(formViewModel.SideProfile.FileName));
                     formViewModel.SideProfile.SaveAs(Server.MapPath("//Content//Inmate//SideProfile// ") + inmate.SideProfile);
             }
+
+          
+            inmate.GetDateOfRelease();
             _context.Inmates.Add(inmate);
             _context.SaveChanges();
-               
-            return RedirectToAction("Index", "Home");
 
+                return RedirectToAction("Index", "Home");
+          
         }
 
         public ActionResult Inmates()
