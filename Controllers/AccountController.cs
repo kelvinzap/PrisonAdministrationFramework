@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -151,21 +152,49 @@ namespace PrisonAdministrationSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email, 
+                    Email = model.Email,
+                    LastName = model.LastName,
+                    FirstName = model.FirstName,
+                    MiddleName = model.MiddleName,
+                    MaidenName = model.MaidenName,
+                    IdentificationNumber = model.IdentificationNumber,
+                    BankVerificationNumber = model.BankVerificationNumber,
+                    Gender = model.Gender,
+                    DateOfBirth = model.DateOfBirth,
+                    Nationality = model.Nationality,
+                    Address = model.Address,
+                    BirthCity = model.BirthCity,
+                    MaritalStatus = model.MaritalStatus,
+                    Height = model.Height,
+                    Weight = model.Weight,
+                    PhoneNumber = model.PhoneNumber
+                };
+
+              
+                    user.Passport = string.Format(user.Id + Path.GetFileName(model.Passport.FileName));
+                    model.Passport.SaveAs(Server.MapPath("//Content//Staff// ") + user.Passport);
+              
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", "Home");
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+
+
                 }
                 AddErrors(result);
+           
             }
 
             // If we got this far, something failed, redisplay form

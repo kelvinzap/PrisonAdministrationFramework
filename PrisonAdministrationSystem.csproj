@@ -215,6 +215,30 @@
     <Compile Include="Migrations\202201200142126_MadeDateTimeString.Designer.cs">
       <DependentUpon>202201200142126_MadeDateTimeString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201210109330_AddPropertiesToUserTable.cs" />
+    <Compile Include="Migrations\202201210109330_AddPropertiesToUserTable.Designer.cs">
+      <DependentUpon>202201210109330_AddPropertiesToUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201210153053_MadeIdentificationNumberInt.cs" />
+    <Compile Include="Migrations\202201210153053_MadeIdentificationNumberInt.Designer.cs">
+      <DependentUpon>202201210153053_MadeIdentificationNumberInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201210208518_MadeSurnameToMiddleName.cs" />
+    <Compile Include="Migrations\202201210208518_MadeSurnameToMiddleName.Designer.cs">
+      <DependentUpon>202201210208518_MadeSurnameToMiddleName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201210224588_AddedPassportToUser.cs" />
+    <Compile Include="Migrations\202201210224588_AddedPassportToUser.Designer.cs">
+      <DependentUpon>202201210224588_AddedPassportToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201210239027_AddedBankVerificationNumberToUser.cs" />
+    <Compile Include="Migrations\202201210239027_AddedBankVerificationNumberToUser.Designer.cs">
+      <DependentUpon>202201210239027_AddedBankVerificationNumberToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201211331009_MadeSomePropertiesLong.cs" />
+    <Compile Include="Migrations\202201211331009_MadeSomePropertiesLong.Designer.cs">
+      <DependentUpon>202201211331009_MadeSomePropertiesLong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -304,6 +328,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Inmate\FrontProfile\" />
     <Folder Include="Content\Inmate\SideProfile\" />
+    <Folder Include="Content\Staff\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -348,6 +373,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201200142126_MadeDateTimeString.resx">
       <DependentUpon>202201200142126_MadeDateTimeString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201210109330_AddPropertiesToUserTable.resx">
+      <DependentUpon>202201210109330_AddPropertiesToUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201210153053_MadeIdentificationNumberInt.resx">
+      <DependentUpon>202201210153053_MadeIdentificationNumberInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201210208518_MadeSurnameToMiddleName.resx">
+      <DependentUpon>202201210208518_MadeSurnameToMiddleName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201210224588_AddedPassportToUser.resx">
+      <DependentUpon>202201210224588_AddedPassportToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201210239027_AddedBankVerificationNumberToUser.resx">
+      <DependentUpon>202201210239027_AddedBankVerificationNumberToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201211331009_MadeSomePropertiesLong.resx">
+      <DependentUpon>202201211331009_MadeSomePropertiesLong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
