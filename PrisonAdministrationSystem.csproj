@@ -280,6 +280,7 @@
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StaffRole.cs" />
+    <Compile Include="Models\StaffsVewModel.cs" />
     <Compile Include="Models\ValidTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

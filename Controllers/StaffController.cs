@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -87,7 +88,13 @@ namespace PrisonAdministrationSystem.Controllers
         [Authorize]
         public ActionResult Staffs()
         {
-            return View();
+            var staffs = new StaffsVewModel
+            {
+                Staffs = _context.Staffs
+                    .Include(p=>p.Role)
+                    .ToList()
+            };
+            return View(staffs);
         }
 
 

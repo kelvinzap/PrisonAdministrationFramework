@@ -1,7 +1,18 @@
-﻿
+﻿@model PrisonAdministrationSystem.Models.StaffsVewModel
 @{
     ViewBag.Title = "Staffs";
 }
+<div class="body-header">
+    <h2 class="form-header-text">Staffs</h2>
+</div>
 
-<h2>Staffs</h2>
+<ul>
+    @foreach (var staff in Model.Staffs)
+    {
+        <li>
+            @staff.Role.Name
+        </li>
+    }
+</ul>
+
 
