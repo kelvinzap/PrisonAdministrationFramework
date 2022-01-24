@@ -172,6 +172,11 @@
     <Compile Include="Controllers\InmateController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Migrations\202201242208372_AddedRoleID.cs" />
+    <Compile Include="Migrations\202201242208372_AddedRoleID.Designer.cs">
+      <DependentUpon>202201242208372_AddedRoleID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,26 +244,65 @@
     <Compile Include="Migrations\202201211331009_MadeSomePropertiesLong.Designer.cs">
       <DependentUpon>202201211331009_MadeSomePropertiesLong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201241459439_MadeAgeDateTime.cs" />
+    <Compile Include="Migrations\202201241459439_MadeAgeDateTime.Designer.cs">
+      <DependentUpon>202201241459439_MadeAgeDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201241513306_AddedDateOfBirth.cs" />
+    <Compile Include="Migrations\202201241513306_AddedDateOfBirth.Designer.cs">
+      <DependentUpon>202201241513306_AddedDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201241619156_AddedUserDateOfBirth.cs" />
+    <Compile Include="Migrations\202201241619156_AddedUserDateOfBirth.Designer.cs">
+      <DependentUpon>202201241619156_AddedUserDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201242120345_AddedStaffAndRolesTable.cs" />
+    <Compile Include="Migrations\202201242120345_AddedStaffAndRolesTable.Designer.cs">
+      <DependentUpon>202201242120345_AddedStaffAndRolesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201242131192_PopulateRolesTable.cs" />
+    <Compile Include="Migrations\202201242131192_PopulateRolesTable.Designer.cs">
+      <DependentUpon>202201242131192_PopulateRolesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\CorrectDate.cs" />
+    <Compile Include="Models\FutureDate.cs" />
     <Compile Include="Models\CorrectSentence.cs" />
     <Compile Include="Models\Inmate.cs" />
     <Compile Include="Models\InmateFormViewModel.cs" />
     <Compile Include="Models\InmatesViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MarritalStatus.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\StaffRole.cs" />
     <Compile Include="Models\ValidTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Icons\nigeria-prisons logo %282%29.jpg" />
+    <Content Include="Content\Icons\output-onlinepngtools %282%29.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
@@ -266,15 +310,40 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Content\Site.less" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -323,6 +392,7 @@
     <Content Include="Views\Inmate\Create.cshtml" />
     <Content Include="Views\Inmate\Inmates.cshtml" />
     <Content Include="Views\Staff\CreateStaff.cshtml" />
+    <Content Include="Views\Staff\Staffs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,14 +401,6 @@
     <Folder Include="Content\Staff\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
@@ -391,6 +453,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201211331009_MadeSomePropertiesLong.resx">
       <DependentUpon>202201211331009_MadeSomePropertiesLong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201241459439_MadeAgeDateTime.resx">
+      <DependentUpon>202201241459439_MadeAgeDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201241513306_AddedDateOfBirth.resx">
+      <DependentUpon>202201241513306_AddedDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201241619156_AddedUserDateOfBirth.resx">
+      <DependentUpon>202201241619156_AddedUserDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201242120345_AddedStaffAndRolesTable.resx">
+      <DependentUpon>202201242120345_AddedStaffAndRolesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201242131192_PopulateRolesTable.resx">
+      <DependentUpon>202201242131192_PopulateRolesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201242208372_AddedRoleID.resx">
+      <DependentUpon>202201242208372_AddedRoleID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

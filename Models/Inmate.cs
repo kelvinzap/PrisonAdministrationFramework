@@ -20,7 +20,7 @@ namespace PrisonAdministrationSystem.Models
 
         public string LastName { get; set; }
 
-        public byte Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
         [StringLength(15)]
 
         public string Gender { get; set; }

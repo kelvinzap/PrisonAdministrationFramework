@@ -48,7 +48,7 @@ namespace PrisonAdministrationSystem.Controllers
                 Gender = formViewModel.Gender,
                 CellId = formViewModel.Cell,
                 Sentence = formViewModel.Sentence,
-                Age = formViewModel.Age,
+                DateOfBirth = formViewModel.GetAge(),
                 Offense = formViewModel.Offense,
                 DateOfIncarceration = formViewModel.GetDateTime(),
                 

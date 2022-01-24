@@ -17,7 +17,7 @@ namespace PrisonAdministrationSystem.Models
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-            return (isValid && dateTime >= DateTime.Today);
+            return (isValid);
 
         }
     }

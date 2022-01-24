@@ -20,8 +20,10 @@ namespace PrisonAdministrationSystem.Models
         [StringLength(100)]
 
         public string LastName { get; set; }
+        [Required]
+        [FutureDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
 
-        public byte Age { get; set; }
+        public string DateOfBirth { get; set; }
         [StringLength(15)]
 
         public string Gender { get; set; }
@@ -38,7 +40,7 @@ namespace PrisonAdministrationSystem.Models
         public string Sentence { get; set; }
       
         [Required]
-        [CorrectDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
+        [FutureDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
         public string DateOfIncarceration { get; set; }
         [Required]
         [ValidTime(ErrorMessage = "The Time Format is invalid! Format: 16:00")]
@@ -55,6 +57,12 @@ namespace PrisonAdministrationSystem.Models
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", DateOfIncarceration, TimeOfIncarceration));
+
+        }    
+        
+        public DateTime GetAge()
+        {
+            return DateTime.Parse(DateOfBirth);
 
         }    
         

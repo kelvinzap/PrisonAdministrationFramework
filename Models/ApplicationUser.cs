@@ -28,7 +28,7 @@ namespace PrisonAdministrationSystem.Models
         public string  Gender { get; set; }
         //d/m/y
         [Required]
-        public string  DateOfBirth { get; set; }
+        public DateTime  DateOfBirth { get; set; }
         [Required]
         public string  Nationality { get; set; }
         [Required]

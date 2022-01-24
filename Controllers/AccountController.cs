@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -140,7 +143,21 @@ namespace PrisonAdministrationSystem.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var status = new List<MarritalStatus>()
+            {
+                new MarritalStatus{Id = 1, Name = "Single"},
+                new MarritalStatus{Id = 2, Name = "Married"},
+                new MarritalStatus{Id = 3, Name = "Divorced"},
+                new MarritalStatus{Id = 4, Name = "Separated"},
+                new MarritalStatus{Id = 5, Name = "Widow/Widower"}
+            };
+
+            var viewModel = new RegisterViewModel
+            {
+                StatusOptions = status.ToList()
+            };
+
+            return View(viewModel);
         }
 
         //
@@ -163,7 +180,7 @@ namespace PrisonAdministrationSystem.Controllers
                     IdentificationNumber = model.IdentificationNumber,
                     BankVerificationNumber = model.BankVerificationNumber,
                     Gender = model.Gender,
-                    DateOfBirth = model.DateOfBirth,
+                    DateOfBirth = model.GetDateOfBirth(),
                     Nationality = model.Nationality,
                     Address = model.Address,
                     BirthCity = model.BirthCity,
@@ -181,7 +198,6 @@ namespace PrisonAdministrationSystem.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -196,7 +212,15 @@ namespace PrisonAdministrationSystem.Controllers
                 AddErrors(result);
            
             }
-
+            var status = new List<MarritalStatus>()
+            {
+                new MarritalStatus{Id = 1, Name = "Single"},
+                new MarritalStatus{Id = 2, Name = "Married"},
+                new MarritalStatus{Id = 3, Name = "Divorced"},
+                new MarritalStatus{Id = 4, Name = "Separated"},
+                new MarritalStatus{Id = 5, Name = "Widow/Widower"}
+            };
+            model.StatusOptions = status.ToList();
             // If we got this far, something failed, redisplay form
             return View(model);
         }

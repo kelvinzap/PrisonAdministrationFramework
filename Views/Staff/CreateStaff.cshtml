@@ -1,7 +1,128 @@
-﻿
+﻿@model PrisonAdministrationSystem.Models.StaffFormViewModel
 @{
     ViewBag.Title = "CreateStaff";
 }
 
-<h2>CreateStaff</h2>
+<div class="body-header">
+    <h2 class="form-header-text">Add a New Staff</h2>
+</div>
 
+<div class="body-form">
+    @using (Html.BeginForm("CreateStaff", "Staff", FormMethod.Post, new { encType = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName)
+
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName)
+
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.MiddleName)
+
+            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaidenName)
+
+            @Html.TextBoxFor(m => m.MaidenName, new { @class = "form-control form-width" })
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender)
+
+            @Html.TextBoxFor(m => m.Gender, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address)
+
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.BirthCity)
+
+            @Html.TextBoxFor(m => m.BirthCity, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nationality)
+
+            @Html.TextBoxFor(m => m.Nationality, new { @class = "form-control form-width" })
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.DateOfBirth)
+
+            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaritalStatus)
+            @Html.DropDownListFor(p => p.MaritalStatus, new SelectList(Model.StatusOptions, "Name", "Name"), "Select Marital Status", new { @class = "form-select form-width" })
+
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Height)
+
+            @Html.TextBoxFor(m => m.Height, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Weight)
+
+            @Html.TextBoxFor(m => m.Weight, new { @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.IdentificationNumber)
+
+            @Html.TextBoxFor(m => m.IdentificationNumber, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.BankVerificationNumber)
+
+            @Html.TextBoxFor(m => m.BankVerificationNumber, new { @class = "form-control form-width" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RoleId)
+            @Html.DropDownListFor(p => p.RoleId, new SelectList(Model.StaffRoles, "Id", "Name"), "Select the Staff's Role", new { @class = "form-select form-width" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Passport)
+            @Html.TextBoxFor(m => m.Passport, new { type = "file", @class = "form-control form-width" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary">
+                    Register
+                </button>
+            </div>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
