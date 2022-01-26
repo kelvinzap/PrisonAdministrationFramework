@@ -11,7 +11,8 @@ namespace PrisonAdministrationSystem
             bundles.Add(new Bundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
-                        "~/Scripts/bootstrap.min.js"
+                        "~/Scripts/bootstrap.min.js",
+                        "~/Scripts/bootbox.min.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

@@ -4,13 +4,15 @@
 }
 
 <div class="body-header">
-    <h2 class="form-header-text">Add a New Staff</h2>
+    <h2 class="form-header-text">@Model.Heading</h2>
 </div>
 
 <div class="body-form">
-    @using (Html.BeginForm("CreateStaff", "Staff", FormMethod.Post, new { encType = "multipart/form-data" }))
+    @using (Html.BeginForm(Model.Action, "Staff", FormMethod.Post, new { encType = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(p => p.Id)
+
 
         @Html.ValidationSummary("", new { @class = "text-danger" })
 
@@ -106,12 +108,14 @@
             @Html.DropDownListFor(p => p.RoleId, new SelectList(Model.StaffRoles, "Id", "Name"), "Select the Staff's Role", new { @class = "form-select form-width" })
 
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Passport)
-            @Html.TextBoxFor(m => m.Passport, new { type = "file", @class = "form-control form-width" })
-        </div>
-
+       
+        if(Model.Id == null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Passport)
+                @Html.TextBoxFor(m => m.Passport, new { type = "file", @class = "form-control form-width" })
+            </div>
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button type="submit" class="btn btn-primary">

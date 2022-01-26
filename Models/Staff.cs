@@ -52,10 +52,37 @@ namespace PrisonAdministrationSystem.Models
         [Required]
         public DateTime DateOfCreation { get; private set; }
 
+        public bool HasLeft { get; private set; }
         public Staff()
         {
             Id = Guid.NewGuid().ToString();
             DateOfCreation = DateTime.Now;
+        }
+
+        public void Remove()
+        {
+            HasLeft = true;
+        }
+
+        public void Modify(StaffFormViewModel model)
+        {
+            LastName = model.LastName;
+            FirstName = model.FirstName;
+            MiddleName = model.MiddleName;
+            MaidenName = model.MaidenName;
+            IdentificationNumber = model.IdentificationNumber;
+            BankVerificationNumber = model.BankVerificationNumber;
+            Gender = model.Gender;
+            DateOfBirth = model.GetDateOfBirth();
+            Nationality = model.Nationality;
+            Address = model.Address;
+            BirthCity = model.BirthCity;
+            MaritalStatus = model.MaritalStatus;
+            Height = model.Height;
+            Weight = model.Weight;
+            RoleId = model.RoleId;
+            PhoneNumber = model.PhoneNumber;
+
         }
     }
 }

@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Web;
+using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using PrisonAdministrationSystem.Controllers;
 
 namespace PrisonAdministrationSystem.Models
 {
     public class StaffFormViewModel
     {
+        public  string Id { get; set; }
+        public string Heading { get; set; }
+        
         public IEnumerable<MarritalStatus> StatusOptions { get; set; }
         public IEnumerable<StaffRole> StaffRoles { get; set; }
         public byte RoleId { get; set; }
@@ -65,9 +72,19 @@ namespace PrisonAdministrationSystem.Models
         [Required]
         [Range(70, 1000)]
         public int Weight { get; set; }
-        [Required]
+        [CustomRequired(ConditionId = "Id")]
         public HttpPostedFileBase Passport { get; set; }
-
+        public string Action
+        {
+            get
+            {
+               Expression<Func<StaffController, ActionResult>> create = (c => c.CreateStaff(this));
+               Expression<Func<StaffController, ActionResult>> update = (c => c.Update(this));
+               var action = (Id != null) ? update : create;
+               return (action.Body as MethodCallExpression).Method.Name;
+            }
+        }
+        
         public DateTime GetDateOfBirth()
         {
             return DateTime.Parse(DateOfBirth);

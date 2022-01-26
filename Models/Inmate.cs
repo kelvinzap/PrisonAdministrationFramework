@@ -47,7 +47,7 @@ namespace PrisonAdministrationSystem.Models
         public string FrontProfile { get; set; }
         [Required]
         public string SideProfile { get; set; }
-
+        public bool HasLeft { get; set; }
         public Inmate()
         {
             this.Id = Guid.NewGuid().ToString();

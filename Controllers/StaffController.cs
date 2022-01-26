@@ -33,11 +33,12 @@ namespace PrisonAdministrationSystem.Controllers
 
             var viewModel = new StaffFormViewModel
             {
+                Heading = "Add a new Staff",
                 StatusOptions = status.ToList(),
                 StaffRoles = _context.StaffRoles.ToList()
             };
 
-            return View(viewModel);
+            return View("CreateStaff", viewModel);
         }
         [Authorize]
         [HttpPost]
@@ -56,7 +57,7 @@ namespace PrisonAdministrationSystem.Controllers
                 };
                 model.StatusOptions = status.ToList();
                 model.StaffRoles = _context.StaffRoles.ToList();
-                return View(model);
+                return View("CreateStaff", model);
             }
             var staff = new Staff
             {
@@ -75,7 +76,8 @@ namespace PrisonAdministrationSystem.Controllers
                 Height = model.Height,
                 Weight = model.Weight,
                 RoleId = model.RoleId,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
+                
             };
             staff.Passport = string.Format(staff.Id + Path.GetFileName(model.Passport.FileName));
             model.Passport.SaveAs(Server.MapPath("//Content//Staff// ") + staff.Passport);
@@ -91,13 +93,89 @@ namespace PrisonAdministrationSystem.Controllers
             var staffs = new StaffsVewModel
             {
                 Staffs = _context.Staffs
+                    .Where(p => !p.HasLeft)
                     .Include(p=>p.Role)
                     .ToList()
             };
             return View(staffs);
         }
 
+        [Authorize]
+        public ActionResult Edit(string Id)
+        {
+            var staff = _context.Staffs
+                .Single(p => p.Id == Id);
+            
+            if (staff == null)
+                return HttpNotFound();
+            var status = new List<MarritalStatus>()
+            {
+                new MarritalStatus{Id = 1, Name = "Single"},
+                new MarritalStatus{Id = 2, Name = "Married"},
+                new MarritalStatus{Id = 3, Name = "Divorced"},
+                new MarritalStatus{Id = 4, Name = "Separated"},
+                new MarritalStatus{Id = 5, Name = "Widow/Widower"}
+            };
 
+            var viewModel = new StaffFormViewModel
+            {
+                Id = staff.Id,
+                Heading = "Edit Staff details",
+                LastName = staff.LastName,
+                FirstName = staff.FirstName,
+                MiddleName = staff.MiddleName,
+                MaidenName = staff.MaidenName,
+                IdentificationNumber = staff.IdentificationNumber,
+                BankVerificationNumber = staff.BankVerificationNumber,
+                Gender = staff.Gender,
+                DateOfBirth = staff.DateOfBirth.ToString("d MMM yyyy"),
+                Nationality = staff.Nationality,
+                Address = staff.Address,
+                BirthCity = staff.BirthCity,
+                MaritalStatus = staff.MaritalStatus,
+                Height = staff.Height,
+                Weight = staff.Weight,
+                RoleId = staff.RoleId,
+                PhoneNumber = staff.PhoneNumber,
+                StatusOptions = status,
+                StaffRoles = _context.StaffRoles.ToList()
+                
+            };
+            return View("CreateStaff", viewModel);
+
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(StaffFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                var status = new List<MarritalStatus>()
+                {
+                    new MarritalStatus{Id = 1, Name = "Single"},
+                    new MarritalStatus{Id = 2, Name = "Married"},
+                    new MarritalStatus{Id = 3, Name = "Divorced"},
+                    new MarritalStatus{Id = 4, Name = "Separated"},
+                    new MarritalStatus{Id = 5, Name = "Widow/Widower"}
+                };
+                viewModel.StatusOptions = status.ToList();
+                viewModel.StaffRoles = _context.StaffRoles.ToList();
+                return View("CreateStaff", viewModel);
+            }
+
+            var staff = _context.Staffs
+                .Single(p => p.Id == viewModel.Id);
+
+            if (staff == null)
+                return HttpNotFound();
+
+            staff.Modify(viewModel);
+
+            _context.SaveChanges();
+            return RedirectToAction("Staffs", "Staff");
+        }
 
     }
 }
