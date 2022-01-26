@@ -47,7 +47,7 @@ namespace PrisonAdministrationSystem.Models
         public string FrontProfile { get; set; }
         [Required]
         public string SideProfile { get; set; }
-        public bool HasLeft { get; set; }
+        public bool HasLeft { get; private set; }
         public Inmate()
         {
             this.Id = Guid.NewGuid().ToString();
@@ -58,6 +58,7 @@ namespace PrisonAdministrationSystem.Models
         {
             var values = new[] { "Life", "life", "live", "Live", "Death", "death" };
             var str =Sentence;
+            //checking if the sentence contains any of the values above
             if (values.Any(str.Contains))
             {
                 DateOfRelease = "";
@@ -68,20 +69,20 @@ namespace PrisonAdministrationSystem.Models
             if (date.Contains("year"))
             {
                var result = new string(Convert.ToString(date).Where(c => char.IsDigit(c)).ToArray());
-                DateOfRelease = DateOfIncarceration.AddYears(Convert.ToInt32(result)).ToString();
+                DateOfRelease = DateOfIncarceration.AddYears(Convert.ToInt32(result)).ToString("d MMM yyyy");
             }
             
             
             if (date.Contains("month"))
             {
                 var result = new string(Convert.ToString(date).Where(c => char.IsDigit(c)).ToArray());
-                DateOfRelease = DateOfIncarceration.AddMonths(Convert.ToInt32(result)).ToString();
+                DateOfRelease = DateOfIncarceration.AddMonths(Convert.ToInt32(result)).ToString("d MMM yyyy");
             }
 
             if (date.Contains("day"))
             {
                 var result = new string(Convert.ToString(date).Where(c => char.IsDigit(c)).ToArray());
-                DateOfRelease = DateOfIncarceration.AddDays(Convert.ToDouble(result)).ToString();
+                DateOfRelease = DateOfIncarceration.AddDays(Convert.ToDouble(result)).ToString("d MMM yyyy");
             }
         }
         public void GetRemissionDateOfRelease(string date)
@@ -113,6 +114,25 @@ namespace PrisonAdministrationSystem.Models
             }
 
             
+        }
+
+        public void Remove()
+        {
+            HasLeft = true;
+        }
+
+        public void Modify(InmateFormViewModel model)
+        {
+            MiddleName = model.MiddleName;
+            LastName = model.LastName;
+            FirstName = model.FirstName;
+            Gender = model.Gender;
+            CellId = model.Cell;
+            Sentence = model.Sentence;
+            DateOfBirth = model.GetAge();
+            Offense = model.Offense;
+            DateOfIncarceration = model.GetDateTime();
+            this.GetDateOfRelease();
         }
     }
 }

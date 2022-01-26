@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace PrisonAdministrationSystem.Controllers
             {
                 Cells = _context.Cells.ToList()
             };
-            return View(viewModel);
+            return View("Create", viewModel);
         }
 
 
@@ -79,9 +80,62 @@ namespace PrisonAdministrationSystem.Controllers
         {
             var inmates = new InmatesViewModel
             {
-                Inmates = _context.Inmates.ToList()
+                Inmates = _context.Inmates
+                    .Where(p=>!p.HasLeft)
+                    .ToList()
             };
             return View(inmates);
+        }
+
+        [Authorize]
+        public ActionResult Edit(string Id)
+        {
+            var inmate = _context.Inmates
+                .Single(p => p.Id == Id);
+
+            if (inmate == null)
+                return HttpNotFound();
+            //Add more details fields
+            var viewModel = new InmateFormViewModel
+            {
+                Id = inmate.Id,
+                MiddleName = inmate.MiddleName,
+                LastName = inmate.LastName,
+                FirstName = inmate.FirstName,
+                Gender = inmate.Gender,
+                Cell = inmate.CellId,
+                Sentence = inmate.Sentence,
+                DateOfBirth = inmate.DateOfBirth.ToString("d MMM yyyy"),
+                Offense = inmate.Offense,
+                DateOfIncarceration = inmate.DateOfIncarceration.ToString("d MMM yyyy"),
+                TimeOfIncarceration = inmate.DateOfIncarceration.ToString("HH:mm"),
+                Cells = _context.Cells.ToList()
+            };
+            return View("Create", viewModel);
+
+        }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(InmateFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Cells = _context.Cells.ToList();
+
+                return View("Create", model);
+            }
+
+            var inmate= _context.Inmates
+                .Single(p => p.Id == model.Id);
+
+            if (inmate == null)
+                return HttpNotFound();
+
+            inmate.Modify(model);
+
+            _context.SaveChanges();
+            return RedirectToAction("Inmates", "Inmate");
         }
     }
 }

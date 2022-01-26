@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
+using System.Web.Mvc;
+using PrisonAdministrationSystem.Controllers;
+using PrisonAdministrationSystem.Validations;
 
 namespace PrisonAdministrationSystem.Models
 {
     public class InmateFormViewModel
     {
-
+        public string Id { get; set; }
+        public string Heading { get; set; }
         [Required]
         [StringLength(100)]
         public string FirstName { get; set; }
@@ -21,14 +26,12 @@ namespace PrisonAdministrationSystem.Models
 
         public string LastName { get; set; }
         [Required]
-        [FutureDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
+        [CorrectDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
 
         public string DateOfBirth { get; set; }
         [StringLength(15)]
 
         public string Gender { get; set; }
-
-
        
         [Required]
         public int Cell { get; set; }
@@ -40,17 +43,27 @@ namespace PrisonAdministrationSystem.Models
         public string Sentence { get; set; }
       
         [Required]
-        [FutureDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
+        [CorrectDate(ErrorMessage = "The Date Format is invalid! Format: 2 Jan 2022")]
         public string DateOfIncarceration { get; set; }
         [Required]
         [ValidTime(ErrorMessage = "The Time Format is invalid! Format: 16:00")]
         public string TimeOfIncarceration { get; set; }
         public string DateOfRelease { get; set; }
-        [Required]
+        [FrontProfileRequired(ConditionId = "Id")]
         public HttpPostedFileBase FrontProfile { get; set; }
-        [Required]
-
+        [SideProfileRequired(ConditionId = "Id")]
         public HttpPostedFileBase SideProfile { get; set; }
+
+        public string Action
+        {
+            get
+            {
+               Expression<Func<InmateController, ActionResult>> update = (c => c.Update(this));
+                Expression<Func<InmateController, ActionResult>> create = c => c.Create(this);
+                var action = (Id != null) ? update : create;
+                return (action.Body as MethodCallExpression).Method.Name;
+            }
+        }
 
         public IEnumerable<Cell> Cells { get; set; }
 

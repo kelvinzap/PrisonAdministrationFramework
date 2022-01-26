@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using PrisonAdministrationSystem.Controllers;
+using PrisonAdministrationSystem.Validations;
 
 namespace PrisonAdministrationSystem.Models
 {

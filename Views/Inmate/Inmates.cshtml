@@ -2,23 +2,79 @@
 @{
     ViewBag.Title = "Inmates";
 }
+<div class="body-header">
+    <h2 class="form-header-text">Inmates</h2>
+</div>
 
-<h2>Inmates</h2>
-<ul>
-    @foreach (var inmates in Model.Inmates)
+<div class="inmates">
+
+    @foreach (var inmate in Model.Inmates)
     {
-        <li>
-            <div class="Profile">
-                <img class="Preview" src="~/Content/Inmate/FrontProfile/@inmates.FrontProfile"/>
+        <div class="im-details">
+            <div class="im-image">
+                <img class="image-card image-round" src="~/Content/Inmate/FrontProfile/@inmate.FrontProfile"/>
             </div>
-            
-            <div class="Summary">
-                <span class="InmateName">
-                    @(String.Format(inmates.FirstName + " " + inmates.MiddleName + " " + inmates.LastName )) 
-                </span>
-                <p>@inmates.CellId</p>
+            <div class="im-details-content">
+                <div class="cell-number im-justify-center">@inmate.CellId</div>
+                <div class="name im-justify-center">@(inmate.LastName + " " + inmate.FirstName )</div>  
+                <div class="offense im-justify-center">@inmate.Offense</div> 
+                <div class="date-of-incarceration im-justify-center">@inmate.DateOfIncarceration.ToString("d MMM yyyy")</div>    
+                <div class="date-of-release im-justify-center">@inmate.DateOfRelease</div>    
+                <div class="actions im-justify-center">
+                    <a  href="@Url.Action("Edit", "Inmate", new {Id = inmate.Id})">
+                        Edit
+                    </a>|
+                    <a class="js-inmate-remove" data-inmate-id="@inmate.Id" href="#">
+                        Remove
+                    </a>
+                </div>
             </div>
-        </li>
+        </div>
     }
-</ul>
 
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-inmate-remove").click(function(e) {
+                var button = $(e.target);
+                bootbox.dialog({
+                    title: 'Custom Dialog Example',
+                    message: 'Are you sure you want to remove this inmate?',
+                    size: 'large',
+                    buttons: {
+                        no: {
+                            label: 'No',
+                            className: 'btn-default',
+                            callback: function() {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: 'Yes',
+                            className: 'btn-danger',
+                            callback: function() {
+                                $.ajax({
+                                        url: "/api/inmate/" + button.attr("data-inmate-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function() {
+                                        button.parents(".im-details").fadeOut(function() {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function() {
+                                        alert("Something went wrong!");
+                                    });
+
+                            }
+                        }
+
+                    }
+                });
+            });
+        });
+    </script>
+}

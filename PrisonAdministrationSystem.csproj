@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\InmateController.cs" />
     <Compile Include="Controllers\Api\StaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmateController.cs" />
@@ -192,7 +193,7 @@
     <Compile Include="Migrations\202201251948218_AddedHasLeftProperty.Designer.cs">
       <DependentUpon>202201251948218_AddedHasLeftProperty.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomRequired.cs" />
+    <Compile Include="Validations\CustomRequired.cs" />
     <Compile Include="Models\StaffFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -286,9 +287,9 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cell.cs" />
-    <Compile Include="Models\CorrectDate.cs" />
-    <Compile Include="Models\FutureDate.cs" />
-    <Compile Include="Models\CorrectSentence.cs" />
+    <Compile Include="Validations\FrontProfileRequired.cs" />
+    <Compile Include="Validations\CorrectDate.cs" />
+    <Compile Include="Validations\CorrectSentence.cs" />
     <Compile Include="Models\Inmate.cs" />
     <Compile Include="Models\InmateFormViewModel.cs" />
     <Compile Include="Models\InmatesViewModel.cs" />
@@ -298,7 +299,8 @@
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StaffRole.cs" />
     <Compile Include="Models\StaffsVewModel.cs" />
-    <Compile Include="Models\ValidTime.cs" />
+    <Compile Include="Validations\SideProfileRequired.cs" />
+    <Compile Include="Validations\ValidTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 
-namespace PrisonAdministrationSystem.Models
+namespace PrisonAdministrationSystem.Validations
 {
-    public class FutureDate : ValidationAttribute
+    public class CorrectDate : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
@@ -17,7 +14,7 @@ namespace PrisonAdministrationSystem.Models
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-            return (isValid && dateTime >= DateTime.Today);
+            return (isValid && dateTime <= DateTime.Now);
 
         }
     }

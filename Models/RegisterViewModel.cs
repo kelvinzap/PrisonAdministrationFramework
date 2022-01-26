@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using PrisonAdministrationSystem.Validations;
 
 namespace PrisonAdministrationSystem.Models
 {
