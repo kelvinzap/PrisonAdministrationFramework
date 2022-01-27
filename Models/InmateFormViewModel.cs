@@ -66,6 +66,7 @@ namespace PrisonAdministrationSystem.Models
         }
 
         public IEnumerable<Cell> Cells { get; set; }
+        public ApplicationUser User { get; set; }
 
         public DateTime GetDateTime()
         {

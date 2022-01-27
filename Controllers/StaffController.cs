@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PrisonAdministrationSystem.Models;
 
 namespace PrisonAdministrationSystem.Controllers
@@ -37,7 +38,9 @@ namespace PrisonAdministrationSystem.Controllers
                 StatusOptions = status.ToList(),
                 StaffRoles = _context.StaffRoles.ToList()
             };
-
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            viewModel.User = user;
             return View("CreateStaff", viewModel);
         }
         [Authorize]
@@ -97,6 +100,9 @@ namespace PrisonAdministrationSystem.Controllers
                     .Include(p=>p.Role)
                     .ToList()
             };
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            staffs.User = user;
             return View(staffs);
         }
 
@@ -141,6 +147,9 @@ namespace PrisonAdministrationSystem.Controllers
                 StaffRoles = _context.StaffRoles.ToList()
                 
             };
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            viewModel.User = user;
             return View("CreateStaff", viewModel);
 
         }

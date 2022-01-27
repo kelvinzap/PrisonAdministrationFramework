@@ -7,38 +7,40 @@
 </div>
 
 
-    <div class="staff">
+<div class="staff">
 
-        @foreach (var staff in Model.Staffs)
-        {
+    @foreach (var staff in Model.Staffs)
+    {
 
-                <div class="details">
-                    <div class="staffs-image">
+        <div class="details">
+            <div class="staffs-image">
 
-                        <img class="image-card image-round" src="~/Content/Staff/@staff.Passport"/>
-                    </div>
-                    <div class="details-content">
-                        <h6>@(staff.LastName + "  " + staff.FirstName + "  " + staff.MiddleName)</h6>
-                        <p class="text-size-12 font-color-grey">@staff.Role.Name</p>
-                        <div class="actions">
-                            <a href="@Url.Action("Edit", "Staff", new {Id = staff.Id})">
-                                Edit
-                            </a>|
-                            <a class="js-staff-remove" data-staff-id="@staff.Id" href="#">
-                                Remove
-                            </a>
-                        </div>
-                    </div>
+                <img class="image-card image-round" src="~/Content/Staff/@staff.Passport" />
+            </div>
+            <div class="details-content">
+                <h6>@(staff.LastName + "  " + staff.FirstName + "  " + staff.MiddleName)</h6>
+                <p class="text-size-12 font-color-grey">@staff.Role.Name</p>
+                <div class="actions">
+                    <a href="@Url.Action("Edit", "Staff", new {Id = staff.Id})">
+                        Edit
+                    </a>|
+                    <a class="js-staff-remove" data-staff-id="@staff.Id" href="#">
+                        Remove
+                    </a>
                 </div>
+            </div>
+        </div>
 
-        }
-    </div>
-
+    }
+</div>
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $(".js-staff-remove").click(function(e) {
+        $(document).ready(function () {
+            $(".js-staff-remove").click(function (e) {
                 var button = $(e.target);
 
                 bootbox.dialog({
@@ -53,21 +55,21 @@
                                 bootbox.hideAll();
                             }
                         },
-                      
+
                         yes: {
                             label: 'Yes',
                             className: 'btn-danger',
-                            callback: function() {
+                            callback: function () {
                                 $.ajax({
-                                        url: "/api/staff/" + button.attr("data-staff-id"),
-                                        method: "DELETE"
-                                    })
-                                    .done(function() {
-                                        button.parents(".details").fadeOut(function() {
+                                    url: "/api/staff/" + button.attr("data-staff-id"),
+                                    method: "DELETE"
+                                })
+                                    .done(function () {
+                                        button.parents(".details").fadeOut(function () {
                                             $(this).remove();
                                         });
                                     })
-                                    .fail(function() {
+                                    .fail(function () {
                                         alert("Something went wrong");
                                     });
                             }
@@ -75,7 +77,7 @@
                     }
                 });
 
-               
+
             });
         });
     </script>

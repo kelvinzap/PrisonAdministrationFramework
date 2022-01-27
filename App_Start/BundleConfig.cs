@@ -12,7 +12,8 @@ namespace PrisonAdministrationSystem
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/bootstrap.min.js",
-                        "~/Scripts/bootbox.min.js"
+                        "~/Scripts/bootbox.min.js",
+                        "~/Scripts/all.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,7 +28,8 @@ namespace PrisonAdministrationSystem
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/all.css"));
         }
     }
 }

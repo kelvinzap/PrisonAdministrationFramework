@@ -99,13 +99,13 @@
 
 
           
-                <div class="form-group">
+            <div class="form-group">
 
-                    @Html.LabelFor(model => model.SideProfile)
-                    @Html.TextBoxFor(m => m.SideProfile, new { type = "file", @class = "form-control form-width" })
-                    @Html.ValidationMessageFor(p => p.SideProfile)
+                @Html.LabelFor(model => model.SideProfile)
+                @Html.TextBoxFor(m => m.SideProfile, new { type = "file", @class = "form-control form-width" })
+                @Html.ValidationMessageFor(p => p.SideProfile)
 
-                </div>
+            </div>
         }
         <div class="form-group">      
             <button type="submit" class="btn btn-primary">Save</button>
@@ -113,6 +113,9 @@
 
     }
 </div>
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")

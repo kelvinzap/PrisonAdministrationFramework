@@ -85,7 +85,9 @@ namespace PrisonAdministrationSystem.Models
                return (action.Body as MethodCallExpression).Method.Name;
             }
         }
-        
+
+        public ApplicationUser User { get; set; }
+
         public DateTime GetDateOfBirth()
         {
             return DateTime.Parse(DateOfBirth);

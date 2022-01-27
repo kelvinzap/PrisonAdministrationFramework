@@ -191,7 +191,7 @@ namespace PrisonAdministrationSystem.Controllers
                 };
 
               
-                    user.Passport = string.Format(user.Id + Path.GetFileName(model.Passport.FileName));
+                    user.Passport = string.Format(user.Id + "Profile.jpg");
                     model.Passport.SaveAs(Server.MapPath("//Content//Staff// ") + user.Passport);
               
 

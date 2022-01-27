@@ -1,7 +1,10 @@
-﻿@{
+﻿@model PrisonAdministrationSystem.Models.ApplicationUser
+@{
     ViewBag.Title = "Home Page";
 }
-
+@{
+    PageData["Name"] = string.Format(Model.LastName + " " + Model.FirstName);
+}
 <div>hello</div>
 <div>world</div>
 <div>it is ya boy</div>

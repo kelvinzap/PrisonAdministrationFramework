@@ -8,5 +8,6 @@ namespace PrisonAdministrationSystem.Models
     public class InmatesViewModel
     {
         public IEnumerable<Inmate> Inmates { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PrisonAdministrationSystem.Models;
 
 namespace PrisonAdministrationSystem.Controllers
@@ -26,6 +27,9 @@ namespace PrisonAdministrationSystem.Controllers
             {
                 Cells = _context.Cells.ToList()
             };
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            viewModel.User = user;
             return View("Create", viewModel);
         }
 
@@ -76,14 +80,34 @@ namespace PrisonAdministrationSystem.Controllers
           
         }
 
+        [Authorize]
         public ActionResult Inmates()
         {
+            var inmatees = _context.Inmates.ToList();
+           
+            foreach (var inmate in inmatees)
+            {
+                var dateRelease = DateTime.Parse(inmate.DateOfRelease);
+                if (dateRelease <= DateTime.Now)
+                {
+                    inmate.Remove();
+                }
+            }
+            _context.SaveChanges();
+            
             var inmates = new InmatesViewModel
             {
                 Inmates = _context.Inmates
                     .Where(p=>!p.HasLeft)
                     .ToList()
             };
+
+          
+
+          
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            inmates.User = user;
             return View(inmates);
         }
 
@@ -111,6 +135,9 @@ namespace PrisonAdministrationSystem.Controllers
                 TimeOfIncarceration = inmate.DateOfIncarceration.ToString("HH:mm"),
                 Cells = _context.Cells.ToList()
             };
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            viewModel.User = user;
             return View("Create", viewModel);
 
         }

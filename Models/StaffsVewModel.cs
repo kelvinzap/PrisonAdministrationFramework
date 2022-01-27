@@ -8,5 +8,6 @@ namespace PrisonAdministrationSystem.Models
     public class StaffsVewModel
     {
         public IEnumerable<Staff> Staffs { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
