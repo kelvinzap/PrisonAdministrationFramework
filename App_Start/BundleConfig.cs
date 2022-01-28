@@ -10,10 +10,12 @@ namespace PrisonAdministrationSystem
         {
             bundles.Add(new Bundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/popper.min.js",
                         "~/Scripts/bootstrap.bundle.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/bootbox.min.js",
-                        "~/Scripts/all.js"
+                        "~/Scripts/all.js",
+                        "~/Scripts/underscore-umd-min.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

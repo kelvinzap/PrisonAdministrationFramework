@@ -48,10 +48,11 @@ namespace PrisonAdministrationSystem.Models
         [Required]
         public string SideProfile { get; set; }
         public bool HasLeft { get; private set; }
+        public DateTime DateOfCreation { get; set; }
         public Inmate()
         {
             this.Id = Guid.NewGuid().ToString();
-
+            this.DateOfCreation = DateTime.Now;
         }
 
         public void GetDateOfRelease()

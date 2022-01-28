@@ -1,10 +1,80 @@
-﻿@model PrisonAdministrationSystem.Models.ApplicationUser
+﻿@model PrisonAdministrationSystem.Models.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 @{
-    PageData["Name"] = string.Format(Model.LastName + " " + Model.FirstName);
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
 }
-<div>hello</div>
-<div>world</div>
-<div>it is ya boy</div>
+
+<div class="body-header">
+<h2 class="form-header-text">Dashboard</h2>
+</div>
+
+<div class="information">
+    <div class="information-inmate">
+        <div class="information-box">
+
+            <span class="information-inmate-icon">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </span>
+            <div class="information-box-detail">
+            <span class="information-label">Total Inmates</span>
+                <span class="information-detail">@Model.InmatesCount</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="information-inmate-new">
+        <div class="information-box">
+            <span class="information-inmate-icon">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </span>
+            <div class="information-box-detail">
+                <span class="information-label">New Inmates</span>
+                <span class="information-detail">@Model.NewInmateCount</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="information-staff">
+        <div class="information-box">
+
+            <span class="information-inmate-icon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+            <div class="information-box-detail">
+                <span class="information-label">Total Staffs</span>
+                <span class="information-detail">@Model.StaffsCount</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="information-staff-new">
+        <div class="information-box">
+
+            <span class="information-inmate-icon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+            <div class="information-box-detail">
+                <span class="information-label">New Staffs</span>
+                <span class="information-detail">@Model.NewStaffCount</span>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="information-cell">
+        <div class="information-box">
+
+            <span class="information-inmate-icon">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+            <div class="information-box-detail">
+                <span class="information-label">Total Cells</span>
+                <span class="information-detail">@Model.CellsCount</span>
+            </div>
+        </div>
+    </div>
+</div>

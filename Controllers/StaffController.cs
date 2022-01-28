@@ -60,6 +60,9 @@ namespace PrisonAdministrationSystem.Controllers
                 };
                 model.StatusOptions = status.ToList();
                 model.StaffRoles = _context.StaffRoles.ToList();
+                var userId = User.Identity.GetUserId();
+                var user = _context.Users.Single(p => p.Id == userId);
+                model.User = user;
                 return View("CreateStaff", model);
             }
             var staff = new Staff
@@ -171,6 +174,9 @@ namespace PrisonAdministrationSystem.Controllers
                 };
                 viewModel.StatusOptions = status.ToList();
                 viewModel.StaffRoles = _context.StaffRoles.ToList();
+                var userId = User.Identity.GetUserId();
+                var user = _context.Users.Single(p => p.Id == userId);
+                viewModel.User = user;
                 return View("CreateStaff", viewModel);
             }
 

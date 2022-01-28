@@ -2,14 +2,16 @@
 @{
     ViewBag.Title = "Create";
 }
-
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
 <div class="body-header
      ">
     <h2 class="form-header-text">Create</h2>
 </div>
 
 <div class="body-form">
-
+   
     @using (Html.BeginForm(Model.Action, "Inmate", FormMethod.Post, new { encType = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -113,9 +115,7 @@
 
     }
 </div>
-@{
-    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
-}
+
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")

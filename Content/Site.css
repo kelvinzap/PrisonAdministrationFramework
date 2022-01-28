@@ -57,7 +57,7 @@ textarea {
 }
 body {
   font-size: 17px;
-  background-color: #F6F7F9;
+  background-color: #E8ECF1;
 }
 body,
 h2,
@@ -71,7 +71,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .form-group {
   margin: 34px;
@@ -171,6 +171,37 @@ ul li > div > img.Preview {
 .notifications > a {
   color: #D6E2EF;
 }
+.navbar-dropdown {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  border-radius: 0px 0px 5px 5px;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0 0 0 1px rgba(20, 20, 31, 0.05), 0 2px 7px 1px rgba(20, 20, 31, 0.16);
+}
+.dropdown-content a {
+  color: black;
+  padding-top: 12px;
+  padding-left: 44px;
+  padding-bottom: 12px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.navbar-dropdown:hover .dropdown-content {
+  display: block;
+}
+.navbar-dropdown:hover .navbar-profile {
+  background-color: hsla(0, 0%, 100%, 0.12);
+}
 .navbar-profile {
   border-left: 1px solid rgba(34, 34, 48, 0.12);
   display: grid;
@@ -182,9 +213,6 @@ ul li > div > img.Preview {
   border-bottom: 0;
   border-top: 0;
 }
-.navbar-right .navbar-profile:hover {
-  background-color: hsla(0, 0%, 100%, 0.12);
-}
 .navbar-user-image {
   height: 40px;
   width: 40px;
@@ -194,7 +222,7 @@ ul li > div > img.Preview {
 .navbar-right-details {
   font-size: 16px;
   position: relative;
-  left: -79px;
+  left: -69px;
 }
 p.navbar-user-name {
   color: #fff;
@@ -210,7 +238,6 @@ p.navbar-role {
   padding: 0;
   grid-auto-rows: minmax(10vh, auto);
   grid-template-columns: 100%;
-  background-color: #FFFFFF;
   grid-area: content;
   grid-column: -2;
   grid-row: 0.5;
@@ -297,14 +324,20 @@ input.searchTerm:focus {
   justify-self: start;
 }
 .body-header {
-  background-color: #F6F7F9;
+  margin-bottom: 35px;
+  margin-top: 9px;
+  background-color: #E8ECF1;
 }
 .form-header-text {
+  font-weight: 700;
+  color: #666;
   position: relative;
   top: 23.6%;
   bottom: 23.6%;
+  font-size: 24px;
 }
 .body-form {
+  background-color: #FFFFFF;
   border: 1px solid #DFE0E3;
   box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
   border-radius: 7px;
@@ -317,11 +350,84 @@ input.searchTerm:focus {
     margin-right: 0;
   }
 }
+.information {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-auto-rows: 10rem;
+  background-color: #E8ECF1;
+}
+.information-inmate {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #44DCBE;
+  border-radius: 10px;
+}
+.information-inmate-new {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #FFC065;
+  border-radius: 10px;
+}
+.information-staff {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #FF6A83;
+  border-radius: 10px;
+}
+.information-staff-new {
+  position: relative;
+  top: 33px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #b56edc;
+  border-radius: 10px;
+}
+.information-cell {
+  position: relative;
+  top: 33px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #60AAFF;
+  border-radius: 10px;
+}
+.information-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+span.information-inmate-icon {
+  margin-top: 24px;
+  width: 70px;
+  text-align: center;
+  line-height: 70px;
+  height: 70px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #FFFFFF;
+  border-radius: 50%;
+}
+.information-box-detail {
+  width: 136.64px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 42px;
+  bottom: 40px;
+  height: 70px;
+}
+.information-label {
+  font-size: 20px;
+  display: block;
+}
+.information-detail {
+  font-weight: 300;
+  font-size: 21px;
+}
 .staff {
   display: grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
   grid-auto-rows: 9.8rem;
-  background-color: #F6F7F9;
+  background-color: #E8ECF1;
 }
 .staff .actions {
   font-size: 13px;
@@ -331,6 +437,7 @@ input.searchTerm:focus {
   display: block;
 }
 .details {
+  border-radius: 6px;
   display: grid;
   grid-template-columns: 20% 80%;
   padding-left: 15px;

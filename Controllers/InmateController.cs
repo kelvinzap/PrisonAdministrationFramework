@@ -42,7 +42,9 @@ namespace PrisonAdministrationSystem.Controllers
             if (!ModelState.IsValid)
             {
                 formViewModel.Cells = _context.Cells.ToList();
-
+                var userId = User.Identity.GetUserId();
+                var user = _context.Users.Single(p => p.Id == userId);
+                formViewModel.User = user;
                 return View("Create", formViewModel);
             }
             var inmate = new Inmate
@@ -149,7 +151,9 @@ namespace PrisonAdministrationSystem.Controllers
             if (!ModelState.IsValid)
             {
                 model.Cells = _context.Cells.ToList();
-
+                var userId = User.Identity.GetUserId();
+                var user = _context.Users.Single(p => p.Id == userId);
+                model.User = user;
                 return View("Create", model);
             }
 

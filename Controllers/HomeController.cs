@@ -21,9 +21,22 @@ namespace PrisonAdministrationSystem.Controllers
         {
             var userId = User.Identity.GetUserId();
             var user = _context.Users.Single(p => p.Id == userId);
-         
-
-            return View(user);
+            var inmates = _context.Inmates.Where(p=>!p.HasLeft).ToList().Count();
+            var staffs = _context.Staffs.Where(p=>!p.HasLeft).ToList().Count();
+            var cells = _context.Cells.ToList().Count();
+            var days30 = DateTime.Now.AddDays(-30);
+            var newInmates = _context.Inmates.Where(p => p.DateOfCreation >= days30 && !p.HasLeft).ToList().Count();
+            var newStaffs = _context.Staffs.Where(p => p.DateOfCreation >= days30 && !p.HasLeft).ToList().Count();
+            var viewModel = new HomeViewModel
+            {
+                InmatesCount = inmates,
+                NewInmateCount = newInmates,
+                StaffsCount = staffs,
+                NewStaffCount = newStaffs,
+                CellsCount = cells,
+                User = user
+            };
+            return View(viewModel);
         }
 
         public ActionResult About()

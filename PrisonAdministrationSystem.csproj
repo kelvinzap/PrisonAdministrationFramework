@@ -193,6 +193,11 @@
     <Compile Include="Migrations\202201251948218_AddedHasLeftProperty.Designer.cs">
       <DependentUpon>202201251948218_AddedHasLeftProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201282025018_AddedDateOfCreationToInmate.cs" />
+    <Compile Include="Migrations\202201282025018_AddedDateOfCreationToInmate.Designer.cs">
+      <DependentUpon>202201282025018_AddedDateOfCreationToInmate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Validations\CustomRequired.cs" />
     <Compile Include="Models\StaffFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -330,6 +335,8 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\underscore-umd-min.js" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -514,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201251948218_AddedHasLeftProperty.resx">
       <DependentUpon>202201251948218_AddedHasLeftProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201282025018_AddedDateOfCreationToInmate.resx">
+      <DependentUpon>202201282025018_AddedDateOfCreationToInmate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
