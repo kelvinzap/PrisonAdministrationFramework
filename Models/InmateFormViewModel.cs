@@ -54,6 +54,26 @@ namespace PrisonAdministrationSystem.Models
         [SideProfileRequired(ConditionId = "Id")]
         public HttpPostedFileBase SideProfile { get; set; }
 
+        public long IdentificationNumber { get; set; }
+
+
+        public long BankVerificationNumber { get; set; }
+        [Required]
+        [Range(100, 250)]
+        public int Height { get; set; }
+        [Required]
+        [Range(70, 1000)]
+        public int Weight { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Nationality { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string BirthCity { get; set; }
+        [Required]
+        [StringLength(25)]
+        public string Complexion { get; set; }
+
         public string Action
         {
             get

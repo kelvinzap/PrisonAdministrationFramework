@@ -1,0 +1,90 @@
+﻿@model PrisonAdministrationSystem.Models.InmateDetailsViewModel
+@{
+    ViewBag.Title = "InmateDetails";
+}
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
+<div class="body-header">
+    <h2 class="form-header-text">Inmate Details</h2>
+</div>
+
+<div class="inmate-details">
+    <div class="inmate-front-profile">
+        <img class="inmate-profile-size" src="~/Content/Inmate/FrontProfile/@Model.Inmate.FrontProfile" />
+    </div>
+    <div class="inmate-side-profile">
+        <img class="inmate-profile-size" src="~/Content/Inmate/SideProfile/@Model.Inmate.SideProfile" />
+    </div>
+    <div class="physical-features">
+        <div class="feature-group">
+            <span class="physical-features-label">Sex:</span>
+            <span class="physical-features-text">@Model.Inmate.Gender</span>
+        </div>
+        <div class="feature-group">
+            <span class="physical-features-label">DOB:</span>
+            <span class="physical-features-text">@Model.Inmate.DateOfBirth.ToString("d MMM yyyy")</span>
+        </div>
+        <div class="feature-group">
+            <span class="physical-features-label">Height:</span>
+            <span class="physical-features-text">@Model.Inmate.Height</span>
+        </div>
+        <div class="feature-group">
+            <span class="physical-features-label">Weight:</span>
+            <span class="physical-features-text">@Model.Inmate.Weight</span>
+        </div>
+
+        <div class="feature-group">
+            <span class="physical-features-label">Complexion:</span>
+            <span class="physical-features-text">@Model.Inmate.Complexion</span>
+        </div>
+    </div>
+</div>
+<div class="inmate-name-header">
+    <span class="name-label">Name:</span>
+    <span class="inmate-name">@(Model.Inmate.LastName + " " + Model.Inmate.FirstName + " " + Model.Inmate.MiddleName)</span>
+</div>
+
+
+
+
+<div class="inmate-information">
+    <div class="inmate-information-header">
+        <span class="name-label">Inmate Information</span>
+    </div>
+    <div class="inmate-information-main">
+    <div class="inmate-information-left">
+        <span class="inmate-information-label">Cell Number</span>
+        <span class="inmate-information-text">@Model.Inmate.CellId</span>
+
+        <span class="inmate-information-label">Offense</span>
+        <span class="inmate-information-text">@Model.Inmate.Offense</span>
+
+        <span class="inmate-information-label">Sentence</span>
+        <span class="inmate-information-text">@Model.Inmate.Sentence</span>
+
+        <span class="inmate-information-label">Date of incarceration</span>
+        <span class="inmate-information-text">@Model.Inmate.DateOfIncarceration.ToString("d MMM yyyy")</span>
+        <span class="inmate-information-label">Date of Release</span>
+        <span class="inmate-information-text">@Model.Inmate.DateOfRelease</span>
+
+    </div>
+    <div class="inmate-information-right">
+        <span class="inmate-information-label">NIN</span>
+        <span class="inmate-information-text">@Model.Inmate.IdentificationNumber</span>
+
+        <span class="inmate-information-label">Bank Verification Number</span>
+        <span class="inmate-information-text">@Model.Inmate.BankVerificationNumber</span>
+
+        <span class="inmate-information-label">Nationality</span>
+        <span class="inmate-information-text">@Model.Inmate.Nationality</span>
+
+        <span class="inmate-information-label">City of birth</span>
+        <span class="inmate-information-text">@Model.Inmate.BirthCity</span>
+        <span class="grey"></span>
+        <span class="grey"></span>
+    </div>
+    </div>
+</div>
+
+

@@ -71,6 +71,51 @@
             @Html.ValidationMessageFor(p => p.Gender)
 
         </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Height)
+            @Html.TextBoxFor(p => p.Height, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.Height)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Weight)
+            @Html.TextBoxFor(p => p.Weight, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.Weight)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Complexion)
+            @Html.TextBoxFor(p => p.Complexion, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.Complexion)
+
+        </div> 
+        <div class="form-group">
+            @Html.LabelFor(p => p.BirthCity)
+            @Html.TextBoxFor(p => p.BirthCity, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.BirthCity)
+
+        </div> 
+        
+        <div class="form-group">
+            @Html.LabelFor(p => p.Nationality)
+            @Html.TextBoxFor(p => p.Nationality, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.Nationality)
+
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(p => p.IdentificationNumber)
+            @Html.TextBoxFor(p => p.IdentificationNumber, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.IdentificationNumber)
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.BankVerificationNumber)
+            @Html.TextBoxFor(p => p.BankVerificationNumber, new { @class = "form-control form-width" })
+            @Html.ValidationMessageFor(p => p.BankVerificationNumber)
+
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(p => p.Offense)
@@ -87,6 +132,7 @@
             </div>
 
         </div>
+       
 
         if (Model.Id == null)
         {

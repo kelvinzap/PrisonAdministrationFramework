@@ -29,6 +29,14 @@ namespace PrisonAdministrationSystem.Models
             modelBuilder.Entity<Inmate>()
                 .Property(i => i.DateOfRelease)
                 .IsOptional();
+            
+            modelBuilder.Entity<Inmate>()
+                .Property(i => i.BankVerificationNumber)
+                .IsOptional();
+            
+            modelBuilder.Entity<Inmate>()
+                .Property(i => i.IdentificationNumber)
+                .IsOptional();
             base.OnModelCreating(modelBuilder);
 
         }

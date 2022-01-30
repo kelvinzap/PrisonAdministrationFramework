@@ -48,7 +48,19 @@ namespace PrisonAdministrationSystem.Models
         [Required]
         public string SideProfile { get; set; }
         public bool HasLeft { get; private set; }
-        public DateTime DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; private set; }
+        [Required]
+        public string Complexion { get; set; }
+        public long BankVerificationNumber { get; set; }
+        public long IdentificationNumber { get; set; }
+        [Required]
+        public int Height { get; set; }
+        [Required]
+        public int Weight { get; set; }
+        [Required]
+        public string BirthCity { get; set; }
+        [Required]
+        public string Nationality { get; set; }
         public Inmate()
         {
             this.Id = Guid.NewGuid().ToString();
@@ -134,6 +146,13 @@ namespace PrisonAdministrationSystem.Models
             Offense = model.Offense;
             DateOfIncarceration = model.GetDateTime();
             this.GetDateOfRelease();
+            Height = model.Height;
+            Weight = model.Weight;
+            Complexion = model.Complexion;
+            BirthCity = model.BirthCity;
+            Nationality = model.Nationality;
+            IdentificationNumber = model.IdentificationNumber;
+            BankVerificationNumber = model.BankVerificationNumber;
         }
     }
 }

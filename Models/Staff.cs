@@ -8,7 +8,7 @@ namespace PrisonAdministrationSystem.Models
 {
     public class Staff
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
         [Required]
         public string LastName { get; set; }
         [Required]

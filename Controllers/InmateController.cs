@@ -58,6 +58,13 @@ namespace PrisonAdministrationSystem.Controllers
                 DateOfBirth = formViewModel.GetAge(),
                 Offense = formViewModel.Offense,
                 DateOfIncarceration = formViewModel.GetDateTime(),
+                Height = formViewModel.Height,
+                Weight = formViewModel.Weight,
+                Nationality = formViewModel.Nationality,
+                BirthCity = formViewModel.BirthCity,
+                Complexion = formViewModel.Complexion,
+                IdentificationNumber = formViewModel.IdentificationNumber,
+                BankVerificationNumber = formViewModel.BankVerificationNumber
                 
             };
             
@@ -135,7 +142,14 @@ namespace PrisonAdministrationSystem.Controllers
                 Offense = inmate.Offense,
                 DateOfIncarceration = inmate.DateOfIncarceration.ToString("d MMM yyyy"),
                 TimeOfIncarceration = inmate.DateOfIncarceration.ToString("HH:mm"),
-                Cells = _context.Cells.ToList()
+                Cells = _context.Cells.ToList(),
+                Height = inmate.Height,
+                Weight = inmate.Weight,
+                Complexion = inmate.Complexion,
+                BirthCity = inmate.BirthCity,
+                Nationality = inmate.Nationality,
+                IdentificationNumber = inmate.IdentificationNumber,
+                BankVerificationNumber = inmate.BankVerificationNumber
             };
             var userId = User.Identity.GetUserId();
             var user = _context.Users.Single(p => p.Id == userId);
@@ -167,6 +181,25 @@ namespace PrisonAdministrationSystem.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Inmates", "Inmate");
+        }
+
+        [Authorize]
+        public ActionResult Details(string Id)
+        {
+            var inmate = _context.Inmates.Single(p => p.Id == Id);
+
+            if (inmate == null)
+                return HttpNotFound();
+
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            var viewModel = new InmateDetailsViewModel
+            {
+                Inmate = inmate,
+                User = user
+            };
+
+            return View("InmateDetails", viewModel);
         }
     }
 }
