@@ -1,0 +1,200 @@
+﻿@using System.Globalization
+@model PrisonAdministrationSystem.Models.StaffDetailsViewModel
+@{
+    ViewBag.Title = "StaffDetails";
+}
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
+
+<div class="body-header">
+    <h2 class="form-header-text">Staff Details</h2>
+</div>
+
+<div class="staff-details">
+    <div class="staff-details-header">
+        <span class="name-label">Name:</span>
+        <span class="inmate-name" >@( CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Model.Staff.LastName + "  " + Model.Staff.FirstName + "  " + Model.Staff.MiddleName))</span>
+    </div>
+    <div class="staff-basic-info">
+        <div class="staff-image">
+            <img class="staff-profile-size image-round" src="~/Content/Staff/@Model.Staff.Passport" alt="Staff Image"/>
+        </div>
+        <div class="staff-basic-info-texts">
+
+
+            <div class="basic-info-group">
+                <span class="basic-info-label">Email</span>
+                <span class="basic-info-label-seperator"> <i class="fa fa-square" aria-hidden="true"></i> </span>
+                <span class="basic-info-text">@(Model.Staff.Email)</span>
+            </div>
+
+            <div class="basic-info-group">
+                <span class="basic-info-label">Phone NO.</span>
+                <span class="basic-info-label-seperator"> <i class="fa fa-square" aria-hidden="true"></i> </span>
+                <span class="basic-info-text">@(Model.Staff.PhoneNumber)</span>
+            </div>
+
+            <div class="basic-info-group">
+                <span class="basic-info-label">Role</span>
+                <span class="basic-info-label-seperator"> <i class="fa fa-square" aria-hidden="true"></i> </span>
+                <span class="basic-info-text">@(Model.Staff.Role.Name)</span>
+            </div>
+
+            <div class="basic-info-group">
+                <span class="basic-info-label">Gender</span>
+                <span class="basic-info-label-seperator"> <i class="fa fa-square" aria-hidden="true"></i> </span>
+                <span class="basic-info-text">@(Model.Staff.Gender)</span>
+            </div>
+        </div>
+    </div>
+    <div class="staff-information">
+
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    DOB
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+          
+         
+                <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+         
+            
+            <span class="staff-information-text">
+                    @Model.User.DateOfBirth
+            </span>
+         
+        </div>
+
+      
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Nationality
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+           
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.Nationality
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    City Of Birth
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.BirthCity
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Address
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.Address
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Maiden Name
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+                
+                <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.MaidenName
+                </span>
+            </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Marital Status
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+                
+                <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.MaritalStatus
+                </span>
+            </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    NIN
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.IdentificationNumber
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    BVN
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.BankVerificationNumber
+                </span>
+        </div>
+
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Height
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.Height
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Weight
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+                <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.Weight
+                </span>
+        </div>
+        <div class="staff-information-group">
+            <div class="staff-information-label-background">
+                <span class="staff-information-label">
+                    Hire Date
+                </span>
+                <div class="small-triangle"></div>
+            </div>
+                <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="staff-information-text">
+                    @Model.User.DateOfCreation.ToString("d MMM yyyy")
+                </span>
+        </div>
+       
+
+
+    </div>
+</div>

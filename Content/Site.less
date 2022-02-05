@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 0;
-
+    overflow-x: hidden;
 }
 p{
     margin:0;
@@ -31,6 +31,10 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+//Font Awesome Overrides
+svg.svg-inline--fa.fa-phone.fa-w-16 {
+    transform: rotate( 90deg );
 }
 /*Bootstrap overrides*/
 .form-control:focus {
@@ -288,7 +292,7 @@ p.navbar-role {
     grid-column: -2;
     grid-row: 0.5;
     margin-left: 2rem;
-    margin-right: 13.2%;
+    margin-right: 8%;
     margin-top: 0.71rem;
     border-radius: 4px;
     /*grid-column-start:2;
@@ -380,9 +384,14 @@ input.searchTerm:focus {
     justify-self: start;
 }
 .body-header {
+    display: grid;
+    grid-template-columns: 50% 50%;
     margin-bottom: 35px;
     margin-top: 9px;
     background-color: #E8ECF1;
+}
+.add-staff{
+    justify-self: right;
 }
 .form-header-text {
    font-weight: 700;
@@ -487,7 +496,7 @@ span.information-inmate-icon {
 .staff {
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
-    grid-auto-rows: 9.8rem;
+    grid-auto-rows: 21.25rem;
     background-color: #E8ECF1;
 
     .actions {
@@ -503,34 +512,47 @@ span.information-inmate-icon {
 .details {
     border-radius: 6px;
     display: grid;
-    grid-template-columns: 20% 80%;
-    padding-left: 15px;
+    grid-template-columns: 100%;
+    grid-template-rows: 42.2% 57.8%;
+   
     background-color: #ffff;
-    margin-right: 2rem;
+    margin-right: 1.56rem;
     box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
-    margin-bottom: 2.1rem;
-
+    margin-bottom: 1.56rem;
 }
 
 .staffs-image {
-    align-self: center;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
 }
-.image-card{
-    width:50px;
-    height:50px;
+.image-card {
+    width: 115px;
+    height: 115px;
+    border: 3px solid #D2D6DE;
+    padding: 3.5px;
 }
 .image-round{
     border-radius:50%
 }
 .details-content {
-    align-self: center;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 37px;
 }
-.details-content h6{
-    margin-bottom:0;
+.staff-name {
+    font-weight: 700;
+    font-size: 20px;
 }
-.text-size-12 {
-    margin-top: 0.25rem;
-    font-size: 12px;
+.phone {
+    font-size: 11px;
+}
+.text-color-blue {
+    color: #337ABE;
+}
+.text-size-16 {
+    font-size: 16px;
 }
 .font-color-grey {
     color: #878793;
@@ -543,6 +565,10 @@ span.information-inmate-icon {
         grid-auto-rows: 9.8rem;
         background-color: #F6F7F9;
     }
+}
+.inmate-image-card{
+    height:50px;
+    width: 50px;
 }
 .inmates {
     box-shadow: 0 5px 20px rgba(0, 0, 0,0.1);
@@ -692,4 +718,111 @@ span.information-inmate-icon {
     height: 40px;
     width: 100%;
     position: relative;
+}
+.staff-details {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: auto;
+    background-color: #fff;
+    box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+}
+.staff-details-header {
+    padding-left: 8px;
+    color: #fff;
+    background: #346CB0;
+    height: 40px;
+    width: 100%;
+}
+.staff-basic-info{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows:250px; 
+    margin-top: 8px;
+}
+.staff-image {
+    height: 100%;
+    width: 100%;
+}
+.staff-basic-info-texts {
+    margin-top: 38px;
+}
+.staff-profile-size {
+    height: 180px;
+    width: 180px;
+    border: 1px solid #000000;
+    padding: 2px;
+    margin-left: 14px;
+}
+
+.basic-info-group {
+    margin-bottom: 8px;
+    position: relative;
+    border-bottom: 1px solid #C0C0C0;
+    width: 60%;
+}
+
+.basic-info-label {
+    font-weight: 700;
+}
+
+.basic-info-label-seperator {
+    font-size: 5px;
+    position: absolute;
+    bottom: 6px;
+    right: 333px;
+}
+
+.basic-info-text {
+    position: absolute;
+    left: 147px;
+    bottom: -2px;
+    color: #484848;
+}
+
+.staff-information {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-left: 32px;
+}
+
+.staff-information-group {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 42% 6% 52%;
+}
+.staff-information-group:nth-child(1), .staff-information-group:nth-child(2){
+    margin-top:0;
+}
+.staff-information-label-background {
+    background: #1579D7;
+    height: 38px;
+    width: 154.81px;
+    padding-left: 8px;
+    padding-top: 7px;
+}
+
+.staff-information-label {
+    color: #fff;
+    font-weight: 700;
+}
+.small-triangle {
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;
+    border-left: 26px solid #1579D7;
+    border-bottom: 19px solid transparent;
+    position: relative;
+    top: -33px;
+    right: -147px;
+}
+.staff-information-text {
+    position: relative;
+    bottom: -7px;
+    color: #484848;
+}
+.dot {
+    color: #575757;
+    position: relative;
+    bottom: -11px;
+    font-size: 13px;
 }

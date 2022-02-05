@@ -35,7 +35,10 @@ namespace PrisonAdministrationSystem.Models
         public string Nationality { get; set; }
         [Required]
         public string Address { get; set; }
+        
 
+        [Required]
+        public string  Email { get; set; }
         [Required]
         public string BirthCity { get; set; }
         [Required]
@@ -82,6 +85,7 @@ namespace PrisonAdministrationSystem.Models
             Weight = model.Weight;
             RoleId = model.RoleId;
             PhoneNumber = model.PhoneNumber;
+            Email = model.Email;
 
         }
     }

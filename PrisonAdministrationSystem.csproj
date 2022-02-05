@@ -190,6 +190,14 @@
     <Compile Include="Migrations\202201292317400_RemovedRequiredForNin.Designer.cs">
       <DependentUpon>202201292317400_RemovedRequiredForNin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202041649217_AddedEmailToStaff.cs" />
+    <Compile Include="Migrations\202202041649217_AddedEmailToStaff.Designer.cs">
+      <DependentUpon>202202041649217_AddedEmailToStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202052052355_RemoveStaffsWithNoEmail.cs" />
+    <Compile Include="Migrations\202202052052355_RemoveStaffsWithNoEmail.Designer.cs">
+      <DependentUpon>202202052052355_RemoveStaffsWithNoEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\InmateDetailsViewModel.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
@@ -207,6 +215,7 @@
       <DependentUpon>202201282025018_AddedDateOfCreationToInmate.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\StaffDetailsViewModel.cs" />
     <Compile Include="Validations\CustomRequired.cs" />
     <Compile Include="Models\StaffFormViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -449,6 +458,7 @@
     <Content Include="Views\Staff\CreateStaff.cshtml" />
     <Content Include="Views\Staff\Staffs.cshtml" />
     <Content Include="Views\Inmate\InmateDetails.cshtml" />
+    <Content Include="Views\Staff\StaffDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -540,6 +550,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201292317400_RemovedRequiredForNin.resx">
       <DependentUpon>202201292317400_RemovedRequiredForNin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202041649217_AddedEmailToStaff.resx">
+      <DependentUpon>202202041649217_AddedEmailToStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202052052355_RemoveStaffsWithNoEmail.resx">
+      <DependentUpon>202202052052355_RemoveStaffsWithNoEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

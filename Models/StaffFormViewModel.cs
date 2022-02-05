@@ -14,7 +14,8 @@ namespace PrisonAdministrationSystem.Models
     {
         public  string Id { get; set; }
         public string Heading { get; set; }
-        
+        [EmailAddress]
+        public string Email { get; set; }
         public IEnumerable<MarritalStatus> StatusOptions { get; set; }
         public IEnumerable<StaffRole> StaffRoles { get; set; }
         public byte RoleId { get; set; }

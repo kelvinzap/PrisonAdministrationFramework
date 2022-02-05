@@ -83,6 +83,7 @@ namespace PrisonAdministrationSystem.Controllers
                 Weight = model.Weight,
                 RoleId = model.RoleId,
                 PhoneNumber = model.PhoneNumber,
+                Email = model.Email
                 
             };
             staff.Passport = string.Format(staff.Id + Path.GetFileName(model.Passport.FileName));
@@ -90,7 +91,7 @@ namespace PrisonAdministrationSystem.Controllers
           
             _context.Staffs.Add(staff);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Staffs", "Staff");
         }
 
         [Authorize]
@@ -147,7 +148,8 @@ namespace PrisonAdministrationSystem.Controllers
                 RoleId = staff.RoleId,
                 PhoneNumber = staff.PhoneNumber,
                 StatusOptions = status,
-                StaffRoles = _context.StaffRoles.ToList()
+                StaffRoles = _context.StaffRoles.ToList(),
+                Email = staff.Email
                 
             };
             var userId = User.Identity.GetUserId();
@@ -190,6 +192,28 @@ namespace PrisonAdministrationSystem.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Staffs", "Staff");
+        }
+
+        [Authorize]
+        public ActionResult Details(string Id)
+        {
+            var staff = _context.Staffs.Where(i=>i.Id == Id).Include(i=>i.Role).SingleOrDefault();
+            
+            if (staff == null)
+                return HttpNotFound();
+
+            if (!User.Identity.IsAuthenticated)
+                return new HttpUnauthorizedResult();
+
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            var viewModel = new StaffDetailsViewModel
+            {
+                User = user,
+                Staff = staff
+            };
+
+            return View("StaffDetails", viewModel);
         }
 
     }

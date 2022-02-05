@@ -1,10 +1,12 @@
-﻿@model PrisonAdministrationSystem.Models.StaffsVewModel
+﻿@using System.Globalization
+@model PrisonAdministrationSystem.Models.StaffsVewModel
 @{
     ViewBag.Title = "Staffs";
 }
 <div class="body-header">
-    <h2 class="form-header-text">Staffs</h2>
-</div>
+    <div><h2 class="form-header-text">Staffs</h2></div>
+        <div class="add-staff"><a class=" btn btn-primary"href="@Url.Action("CreateStaff", "Staff")">Add New  <i class="fa fa-plus" aria-hidden="true"></i></a></div>
+    </div>
 
 
 <div class="staff">
@@ -15,19 +17,23 @@
         <div class="details">
             <div class="staffs-image">
 
-                <img class="image-card image-round" src="~/Content/Staff/@staff.Passport" />
+                <a href="@Url.Action("Details", "Staff", new {Id = staff.Id})">  <img class="image-card image-round" src="~/Content/Staff/@staff.Passport" /></a>
             </div>
             <div class="details-content">
-                <h6>@(staff.LastName + "  " + staff.FirstName + "  " + staff.MiddleName)</h6>
-                <p class="text-size-12 font-color-grey">@staff.Role.Name</p>
-                <div class="actions">
-                    <a href="@Url.Action("Edit", "Staff", new {Id = staff.Id})">
+
+              <div class="staff-name">@( CultureInfo.CurrentCulture.TextInfo.ToTitleCase(staff.LastName + "  " + staff.FirstName + "  " + staff.MiddleName))</div>
+                <p class="text-size-16">@staff.Role.Name</p>
+           
+                <div ><span class="phone"><i class="fa fa-phone" aria-hidden="true"></i></span> <span class="text-color-blue">@staff.PhoneNumber</span></div>
+                <div class="actions-button">
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "Staff", new { Id = staff.Id })">
                         Edit
-                    </a>|
-                    <a class="js-staff-remove" data-staff-id="@staff.Id" href="#">
+                    </a>
+                    <a class="btn btn-danger js-staff-remove" data-staff-id="@staff.Id" href="#">
                         Remove
                     </a>
                 </div>
+               
             </div>
         </div>
 
