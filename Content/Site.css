@@ -334,7 +334,7 @@ input.searchTerm:focus {
   margin-top: 9px;
   background-color: #E8ECF1;
 }
-.add-staff {
+.add-button-blue {
   justify-self: right;
 }
 .form-header-text {
@@ -507,6 +507,8 @@ span.information-inmate-icon {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 100%;
+  grid-auto-rows: 80px;
+  background: #fff;
 }
 .inmates .actions {
   font-size: 14px;
@@ -521,6 +523,16 @@ span.information-inmate-icon {
 .inmates .im-details:nth-child(odd) {
   background-color: #fff;
 }
+.im-details:nth-child(even) .inmates-border {
+  background: #F2F2F2;
+}
+.im-details:nth-child(even) .im-image {
+  background: #F2F2F2;
+}
+.inmates-label {
+  font-weight: 700;
+  font-size: 16px;
+}
 .im-justify-center {
   justify-self: center;
 }
@@ -530,12 +542,22 @@ span.information-inmate-icon {
 }
 .im-details-content {
   display: grid;
-  grid-template-columns: 20% 7% 10% 20% 20% 20%;
+  grid-template-columns: 20% 10% 10% 20% 20% 20%;
   place-items: center;
+}
+.inmates-border {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  width: 98.5%;
+  border-right: 1px solid #DDE1E5;
+  position: relative;
+  right: -1px;
 }
 .im-image {
   display: grid;
   place-items: center;
+  border-right: 1px solid #DDE1E5;
 }
 .name > a {
   text-decoration: none;

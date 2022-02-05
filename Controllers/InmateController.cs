@@ -85,7 +85,7 @@ namespace PrisonAdministrationSystem.Controllers
             _context.Inmates.Add(inmate);
             _context.SaveChanges();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Inmates", "Inmate");
           
         }
 
