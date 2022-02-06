@@ -31,6 +31,11 @@ svg.svg-inline--fa.fa-phone.fa-w-16 {
   transform: rotate(90deg);
 }
 /*Bootstrap overrides*/
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+  font-size: 2.5rem;
+}
 .form-control:focus {
   box-shadow: none;
 }
@@ -120,7 +125,6 @@ ul li > div > img.Preview {
   align-items: center;
 }
 #sidebar > ul > li:hover .sidebar-link {
-  background-color: #F4F6F9;
   border-top-color: transparent;
   color: #4680ff;
 }
@@ -128,6 +132,9 @@ ul li > div > img.Preview {
   display: block;
   text-decoration: none;
   padding: 17px 15px;
+}
+li.sidebar-item:hover {
+  background-color: #F0F0F0;
 }
 .sidebar-user-panel {
   height: 100%;
@@ -151,6 +158,27 @@ ul li > div > img.Preview {
   max-width: 100%;
   border: 1px solid rgba(52, 73, 94, 0.44);
   padding: 2px;
+}
+.info {
+  padding-left: 10px;
+  display: grid;
+  align-items: end;
+}
+.sidebar-user-name {
+  font-size: 14px;
+}
+.sidebar-user-state {
+  position: relative;
+  top: -5px;
+  left: 13px;
+}
+.green-dot {
+  color: #26C281;
+  font-size: 13px;
+  margin-right: 6px;
+}
+.sidebar-online {
+  font-size: 12px;
 }
 .sidebar-link {
   color: #363642;
@@ -311,11 +339,7 @@ input.searchTerm:focus {
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: 23.82% 76.18%;
-  align-items: center;
-  /*  width: 100%;
-    height: 100%;*/
-  background-color: #30619F;
+  place-items: center;
 }
 .menu-button {
   font-size: 29px;
@@ -399,6 +423,14 @@ input.searchTerm:focus {
   background-color: #60AAFF;
   border-radius: 10px;
 }
+.information-ex-convicts {
+  position: relative;
+  top: 33px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 278.73px;
+  background-color: #ff60d9;
+  border-radius: 10px;
+}
 .information-box {
   position: relative;
   width: 100%;
@@ -437,13 +469,6 @@ span.information-inmate-icon {
   grid-template-columns: 33.3% 33.3% 33.3%;
   grid-auto-rows: 21.25rem;
   background-color: #E8ECF1;
-}
-.staff .actions {
-  font-size: 13px;
-  display: none;
-}
-.staff > div:hover .actions {
-  display: block;
 }
 .details {
   border-radius: 6px;
@@ -509,16 +534,6 @@ span.information-inmate-icon {
   grid-template-columns: 100%;
   grid-auto-rows: 80px;
   background: #fff;
-}
-.inmates .actions {
-  font-size: 14px;
-  display: block;
-}
-.inmates .actions > a {
-  text-decoration: none;
-}
-.inmates .actions > a:hover {
-  text-decoration: underline;
 }
 .inmates .im-details:nth-child(odd) {
   background-color: #fff;

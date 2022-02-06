@@ -12,6 +12,7 @@ namespace PrisonAdministrationSystem.Models
         public int StaffsCount { get; set; }
         public int NewStaffCount { get; set; }
         public int CellsCount { get; set; }
+        public int ExConvicts { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

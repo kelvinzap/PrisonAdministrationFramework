@@ -28,6 +28,8 @@ namespace PrisonAdministrationSystem.Controllers.Api
                 return BadRequest();
 
             inmate.Remove();
+            var cell = _context.Cells.Single(p => p.Id == inmate.CellId);
+            cell.OccupantNumber -= 1;
             _context.SaveChanges();
 
             return Ok();

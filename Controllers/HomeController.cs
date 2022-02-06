@@ -25,6 +25,7 @@ namespace PrisonAdministrationSystem.Controllers
             var staffs = _context.Staffs.Where(p=>!p.HasLeft).ToList().Count();
             var cells = _context.Cells.ToList().Count();
             var days30 = DateTime.Now.AddDays(-30);
+            var exConvicts = _context.Inmates.Where(p => p.HasLeft).ToList().Count;
             var newInmates = _context.Inmates.Where(p => p.DateOfCreation >= days30 && !p.HasLeft).ToList().Count();
             var newStaffs = _context.Staffs.Where(p => p.DateOfCreation >= days30 && !p.HasLeft).ToList().Count();
             var viewModel = new HomeViewModel
@@ -34,7 +35,8 @@ namespace PrisonAdministrationSystem.Controllers
                 StaffsCount = staffs,
                 NewStaffCount = newStaffs,
                 CellsCount = cells,
-                User = user
+                User = user,
+                ExConvicts = exConvicts
             };
             return View(viewModel);
         }

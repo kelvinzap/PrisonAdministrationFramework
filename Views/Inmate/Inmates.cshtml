@@ -35,10 +35,10 @@
                     <div class="inmates-border ">  <div class="date-of-release im-justify-center">@inmate.DateOfRelease</div></div>
                     <div class="inmates-border ">
                         <div class="actions im-justify-center">
-                            <a href="@Url.Action("Edit", "Inmate", new {Id = inmate.Id})">
+                            <a class="btn btn-primary"href="@Url.Action("Edit", "Inmate", new {Id = inmate.Id})">
                                 Edit
-                            </a>|
-                            <a class="js-inmate-remove" data-inmate-id="@inmate.Id" href="#">
+                            </a>
+                            <a class="btn btn-danger js-inmate-remove" data-inmate-id="@inmate.Id" href="#">
                                 Remove
                             </a>
                         </div>

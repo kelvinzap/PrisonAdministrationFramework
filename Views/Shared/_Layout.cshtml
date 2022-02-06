@@ -23,7 +23,9 @@
                             <img class="image-round sidebar-user-image" src="~/Content/Staff/@(User.Identity.GetUserId() + "Profile.jpg")"/>
                         </div>
                         <div class="info">
-                           @PageData["Name"]
+
+                            <div class="sidebar-user-name">@PageData["Name"]</div>
+                            <div class="sidebar-user-state"><span class="green-dot"><i class="fa fa-circle" aria-hidden="true"></i></span><span class="sidebar-online">Online</span></div>
                         </div>
                     </div>
 
@@ -75,16 +77,10 @@
             <div class="container">
                 <div class="navbar-brand-area">
                     
-                    <a class="menu-area" href="#">
-                        <span class="menu-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </span>
-                    </a> 
+                   
                     
                     
-                    <a class="navbar-brand" href="@Url.Action("Register", "Account")">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                         <span class="icon">LOGO</span>
                     </a>
                 </div>

@@ -82,6 +82,8 @@ namespace PrisonAdministrationSystem.Controllers
 
           
             inmate.GetDateOfRelease();
+            var cell = _context.Cells.Single(p => p.Id == inmate.CellId);
+            cell.OccupantNumber += 1;
             _context.Inmates.Add(inmate);
             _context.SaveChanges();
 
