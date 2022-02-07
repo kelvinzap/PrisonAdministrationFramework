@@ -1,0 +1,46 @@
+﻿@model PrisonAdministrationSystem.Models.InmatesViewModel
+@{
+    ViewBag.Title = "ExInmates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-header">
+    <div><h2 class="form-header-text">Ex-Inmates</h2></div>
+   
+</div>
+
+<ul>
+    <li class="inmates">
+        <div class="im-details">
+            <div class="im-image"></div>
+            <div class="ex-im-details-content">
+                <div class="inmates-border "><div class="inmates-label">Name</div></div>
+                <div class="inmates-border "> <div class="inmates-label">Cell NO.</div></div>
+                <div class="inmates-border "> <div class="inmates-label">Offense</div></div>
+                <div class="inmates-border "> <div class="inmates-label">Date Of Entry</div></div>
+                <div class="inmates-border "> <div class="inmates-label">Date Of Release</div></div>
+            </div>
+        </div>
+        @foreach (var inmate in Model.Inmates)
+        {
+            <div class="im-details">
+                <div class="im-image">
+                    <a href="@Url.Action("Details","Inmate", new{Id = @inmate.Id, query="ExInmate"})"> <img class="inmate-image-card image-round" src="~/Content/Inmate/FrontProfile/@inmate.FrontProfile" /></a>
+                </div>
+                <div class="ex-im-details-content">
+
+                    <div class="inmates-border "> <div class="name im-justify-center"><a href="@Url.Action("Details","Inmate", new{Id = @inmate.Id, query= "ExInmate"})">@(inmate.LastName + " " + inmate.FirstName )</a></div></div>
+                    <div class="inmates-border ">  <div class="cell-number im-justify-center">@inmate.CellId</div></div>
+                    <div class="inmates-border ">  <div class="offense im-justify-center">@(inmate.Offense.Replace(",", " ").Split(' ').First())...</div></div>
+                    <div class="inmates-border ">  <div class="date-of-incarceration im-justify-center">@inmate.DateOfIncarceration.ToString("d MMM yyyy")</div></div>
+                    <div class="inmates-border ">  <div class="date-of-release im-justify-center">@inmate.DateOfRelease</div></div>
+                   
+                </div>
+            </div>
+        }
+
+    </li>
+</ul>
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}

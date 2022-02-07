@@ -1,0 +1,30 @@
+﻿@model PrisonAdministrationSystem.Models.CellsViewModel
+@{
+    ViewBag.Title = "Cells";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+}
+
+<div class="body-header">
+    <h2 class="form-header-text">Cells</h2>
+    <div class="add-button-blue"><a class=" btn btn-primary" href="@Url.Action("Create", "Cell")">Add New  <i class="fa fa-plus" aria-hidden="true"></i></a></div>
+
+</div>
+
+<div class="cells">
+    @foreach (var cell in Model.Cells)
+    {
+        <div class="cell-box">
+        <div class="cell-no-details">
+            <span class="cell-information-label">CELL Number <span class="float-end cell-icon"><i class="fas fa-lock"></i></span></span>
+            <span class="cell-information-detail">@cell.Id</span>
+        </div>
+        <div class="cell-details">
+            <span class="cell-information-label">NO. Of Inmates <span class="float-end inmates-icon"><i class="fas fa-users"></i></span></span>
+            <span class="cell-information-detail">@cell.OccupantNumber</span>
+        </div>
+        </div>
+    }
+</div>

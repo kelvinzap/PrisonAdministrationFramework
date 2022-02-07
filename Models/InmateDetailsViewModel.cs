@@ -4,5 +4,6 @@
     {
         public Inmate Inmate { get; set; }
         public ApplicationUser User { get; set; }
+        public string Query { get; set; }
     }
 }

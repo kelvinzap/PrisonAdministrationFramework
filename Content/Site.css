@@ -248,7 +248,7 @@ ul li > div > img.Preview {
 #sidebar > ul {
   display: grid;
   grid-template-columns: 100%;
-  grid-auto-rows: 108px 58px 58px 58px 58px;
+  grid-auto-rows: 108px 58px 58px 58px 58px 58px;
   padding-left: 0;
   padding-right: 0;
   padding-top: 9px;
@@ -554,7 +554,7 @@ input.searchTerm:focus {
   background-color: #60AAFF;
   border-radius: 10px;
 }
-.information-ex-convicts {
+.information-ex-inmates {
   position: relative;
   top: 33px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -910,4 +910,40 @@ span.information-inmate-icon {
   position: relative;
   bottom: -11px;
   font-size: 13px;
+}
+.ex-im-details-content {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  place-items: center;
+}
+.cells {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-auto-rows: 221px;
+}
+.cell-box {
+  font-weight: 600;
+  background: #fff;
+  margin-right: 21px;
+  border-radius: 6px;
+  margin-bottom: 1.56rem;
+  box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+  padding: 28px 18px 28px 28px;
+}
+.cell-no-details {
+  font-size: 18PX;
+}
+.cell-information-label {
+  display: block;
+}
+.cell-icon {
+  color: #0ab7b7;
+  font-size: 24px;
+}
+.inmates-icon {
+  color: #FD7E14;
+  font-size: 24px;
+}
+span.cell-information-detail {
+  font-size: 36px;
 }

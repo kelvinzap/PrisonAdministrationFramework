@@ -180,6 +180,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\InmateController.cs" />
     <Compile Include="Controllers\Api\StaffController.cs" />
+    <Compile Include="Controllers\CellController.cs" />
+    <Compile Include="Models\CellsViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmateController.cs" />
     <Compile Include="Migrations\202201292024301_ExtendedInmate.cs" />
@@ -463,6 +465,8 @@
     <Content Include="Views\Staff\StaffDetails.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Account\LoginPage.cshtml" />
+    <Content Include="Views\Inmate\ExInmates.cshtml" />
+    <Content Include="Views\Cell\Cells.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -186,7 +186,7 @@ namespace PrisonAdministrationSystem.Controllers
         }
 
         [Authorize]
-        public ActionResult Details(string Id)
+        public ActionResult Details(string Id, string query)
         {
             var inmate = _context.Inmates.Single(p => p.Id == Id);
 
@@ -198,10 +198,26 @@ namespace PrisonAdministrationSystem.Controllers
             var viewModel = new InmateDetailsViewModel
             {
                 Inmate = inmate,
-                User = user
+                User = user,
+                Query = query
             };
 
             return View("InmateDetails", viewModel);
+        }
+
+        public ActionResult ExInmates()
+        {
+            var inmates = new InmatesViewModel
+            {
+                Inmates = _context.Inmates
+                    .Where(p => p.HasLeft)
+                    .ToList()
+            };
+               
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(p => p.Id == userId);
+            inmates.User = user;
+            return View(inmates);
         }
     }
 }

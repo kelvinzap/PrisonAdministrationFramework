@@ -53,22 +53,23 @@
         <span class="name-label">Inmate Information</span>
     </div>
     <div class="inmate-information-main">
-    <div class="inmate-information-left">
-        <span class="inmate-information-label">Cell Number</span>
-        <span class="inmate-information-text">@Model.Inmate.CellId</span>
+        <div class="inmate-information-left">
+            
+            <span class="inmate-information-label">@((Model.Query == null)? "Cell Number":"Past Cell Number")</span>
+            <span class="inmate-information-text">@Model.Inmate.CellId</span>
 
-        <span class="inmate-information-label">Offense</span>
-        <span class="inmate-information-text">@Model.Inmate.Offense</span>
+            <span class="inmate-information-label">Offense</span>
+            <span class="inmate-information-text">@Model.Inmate.Offense</span>
 
-        <span class="inmate-information-label">Sentence</span>
-        <span class="inmate-information-text">@Model.Inmate.Sentence</span>
+            <span class="inmate-information-label">Sentence</span>
+            <span class="inmate-information-text">@Model.Inmate.Sentence</span>
 
-        <span class="inmate-information-label">Date of incarceration</span>
-        <span class="inmate-information-text">@Model.Inmate.DateOfIncarceration.ToString("d MMM yyyy")</span>
-        <span class="inmate-information-label">Date of Release</span>
-        <span class="inmate-information-text">@Model.Inmate.DateOfRelease</span>
+            <span class="inmate-information-label">Date of incarceration</span>
+            <span class="inmate-information-text">@Model.Inmate.DateOfIncarceration.ToString("d MMM yyyy")</span>
+            <span class="inmate-information-label">Date of Release</span>
+            <span class="inmate-information-text">@Model.Inmate.DateOfRelease</span>
 
-    </div>
+        </div>
     <div class="inmate-information-right">
         <span class="inmate-information-label">NIN</span>
         <span class="inmate-information-text">@Model.Inmate.IdentificationNumber</span>

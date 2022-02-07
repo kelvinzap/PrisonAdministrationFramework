@@ -17,7 +17,8 @@
             <div class="inmates-border "> <div class="inmates-label">Offense</div></div>
             <div class="inmates-border "> <div class="inmates-label">Date Of Entry</div></div>
             <div class="inmates-border "> <div class="inmates-label">Date Of Release</div></div>
-            <div class="inmates-border "><div class="inmates-label">Action</div></div>
+            <div class="inmates-border "> <div class="inmates-label">Action</div></div>
+           
             </div>
         </div>
         @foreach (var inmate in Model.Inmates)
@@ -33,16 +34,18 @@
                     <div class="inmates-border ">  <div class="offense im-justify-center">@(inmate.Offense.Replace(",", " ").Split(' ').First())...</div></div>
                     <div class="inmates-border ">  <div class="date-of-incarceration im-justify-center">@inmate.DateOfIncarceration.ToString("d MMM yyyy")</div></div>
                     <div class="inmates-border ">  <div class="date-of-release im-justify-center">@inmate.DateOfRelease</div></div>
-                    <div class="inmates-border ">
-                        <div class="actions im-justify-center">
-                            <a class="btn btn-primary"href="@Url.Action("Edit", "Inmate", new {Id = inmate.Id})">
-                                Edit
-                            </a>
-                            <a class="btn btn-danger js-inmate-remove" data-inmate-id="@inmate.Id" href="#">
-                                Remove
-                            </a>
+                  
+                        <div class="inmates-border ">
+                            <div class="actions im-justify-center">
+                                <a class="btn btn-primary"href="@Url.Action("Edit", "Inmate", new { Id = inmate.Id })">
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger js-inmate-remove" data-inmate-id="@inmate.Id" href="#">
+                                    Remove
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         }
