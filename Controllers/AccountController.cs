@@ -62,7 +62,7 @@ namespace PrisonAdministrationSystem.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View("LoginPage");
         }
 
         //
@@ -74,7 +74,7 @@ namespace PrisonAdministrationSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("LoginPage",model);
             }
 
             // This doesn't count login failures towards account lockout

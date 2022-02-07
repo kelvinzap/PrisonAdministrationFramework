@@ -1,0 +1,63 @@
+﻿@using PrisonAdministrationSystem.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "LoginPage";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+<div class="center-page">
+    <div class="login">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {@class="form-width100"}))
+        {
+            <span class="login-logo">
+                <img src="~/Content/Icons/PrisonLogoo.ico"/>
+            </span>
+            <span class="login-form-title p-b-27 p-b-34">Log in</span>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="login-fields">
+        @*<div class="form-floating mb-3">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control login-form", placeholder="Email" })
+            @Html.LabelFor(m => m.Email)
+
+        </div>*@
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control login-form", placeholder = "Email" })
+        <span class="login-fields-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+
+
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="login-fields">
+
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control login-form", placeholder = "Password" })
+        <span class="login-fields-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+
+
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+           
+            <div >
+
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>
+            
+            <div class="login-form-btn" >
+                <div class="login-form-btn-cont">
+                    <input type="submit" value="Log in" class= "login-btn-shape btn btn-light" />
+                </div>
+            </div>
+           
+            @* Enable this once you have account confirmation enabled for password reset functionality
+                <p>
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                </p>*@
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
