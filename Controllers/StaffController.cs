@@ -95,19 +95,36 @@ namespace PrisonAdministrationSystem.Controllers
         }
 
         [Authorize]
-        public ActionResult Staffs()
+        public ActionResult Staffs(string query = null)
         {
-            var staffs = new StaffsVewModel
+            var staffs = _context.Staffs
+                .Where(p => !p.HasLeft)
+                .Include(p => p.Role)
+                .ToList();
+            if (!String.IsNullOrWhiteSpace(query))
             {
-                Staffs = _context.Staffs
-                    .Where(p => !p.HasLeft)
-                    .Include(p=>p.Role)
-                    .ToList()
+                staffs = staffs
+                    .Where(p => String
+                        .Format((p.FirstName
+                                 + p.LastName
+                                 + p.MiddleName
+                                 + p.DateOfCreation
+                                 + p.Role
+                                 + p.PhoneNumber).ToLower())
+                        .Contains(String.Concat(query
+                            .ToLower()
+                            .Where(c => !Char.IsWhiteSpace(c)))))
+                    .ToList();
+            }
+            var viewModel = new StaffsVewModel
+            {
+                Staffs = staffs,
+                SearchTerm = query
             };
             var userId = User.Identity.GetUserId();
             var user = _context.Users.Single(p => p.Id == userId);
-            staffs.User = user;
-            return View(staffs);
+            viewModel.User = user;
+            return View(viewModel);
         }
 
         [Authorize]

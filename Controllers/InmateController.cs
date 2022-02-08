@@ -92,7 +92,7 @@ namespace PrisonAdministrationSystem.Controllers
         }
 
         [Authorize]
-        public ActionResult Inmates()
+        public ActionResult Inmates(string query = null)
         {
             var inmatees = _context.Inmates.ToList();
            
@@ -104,13 +104,31 @@ namespace PrisonAdministrationSystem.Controllers
                     inmate.Remove();
                 }
             }
+
             _context.SaveChanges();
-            
-            var inmates = new InmatesViewModel
+            var inmates = _context.Inmates
+                .Where(p => !p.HasLeft)
+                .ToList();
+            if (!String.IsNullOrWhiteSpace(query))
             {
-                Inmates = _context.Inmates
-                    .Where(p=>!p.HasLeft)
-                    .ToList()
+                inmates = inmates
+                    .Where(p=>String
+                        .Format((p.FirstName 
+                                 + p.LastName 
+                                 + p.MiddleName 
+                                 +p.DateOfIncarceration.ToString("d MMM yyyy") 
+                                 + p.DateOfRelease 
+                                 + p.Offense 
+                                 + p.CellId.ToString()).ToLower())
+                        .Contains(String.Concat(query
+                                .ToLower()
+                                .Where(c => !Char.IsWhiteSpace(c)))) )
+                    .ToList();
+            }
+            var viewModel = new InmatesViewModel
+            {
+                Inmates = inmates,
+                SearchTerm = query
             };
 
           
@@ -118,8 +136,8 @@ namespace PrisonAdministrationSystem.Controllers
           
             var userId = User.Identity.GetUserId();
             var user = _context.Users.Single(p => p.Id == userId);
-            inmates.User = user;
-            return View(inmates);
+            viewModel.User = user;
+            return View(viewModel);
         }
 
         [Authorize]

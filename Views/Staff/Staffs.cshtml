@@ -41,6 +41,7 @@
 </div>
 @{
     PageData["Name"] = string.Format(Model.User.LastName + " " + Model.User.FirstName);
+    PageData["Query"] = Model.SearchTerm;
 }
 @section scripts
 {

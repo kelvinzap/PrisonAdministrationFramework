@@ -17,7 +17,7 @@ namespace PrisonAdministrationSystem.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
             var userId = User.Identity.GetUserId();
             var user = _context.Users.Single(p => p.Id == userId);

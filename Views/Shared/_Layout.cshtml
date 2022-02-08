@@ -93,13 +93,20 @@
                 </div>
 
                 <div class="searchArea">
-                    <form class="search" action="/Home/Search" method="post">
-                        <span class="searchIcon">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </span>
-                        <input class="searchTerm" type="search" placeholder="Search" aria-label="Search" />
+                    
+                    @{
+                        string query = "";
+                        query = PageData["Query"];
+                    }
+                  
+                    <form action="@Url.RouteUrl(ViewContext.RouteData.Values)" class="search" method="get"> 
+                    <span class="searchIcon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                    <input id="query" name="query" class="searchTerm" type="search" placeholder="Search" aria-label="Search" value="@query" />
 
-                    </form>
+
+                </form>
                 </div>
                 <div class="navbar-right">
                     <div class="navbar-noti">

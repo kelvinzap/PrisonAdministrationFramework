@@ -9,5 +9,6 @@ namespace PrisonAdministrationSystem.Models
     {
         public IEnumerable<Staff> Staffs { get; set; }
         public ApplicationUser User { get; set; }
+        public string SearchTerm { get; set; }
     }
 }
