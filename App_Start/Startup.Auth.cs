@@ -5,7 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Persistence;
 
 namespace PrisonAdministrationSystem
 {

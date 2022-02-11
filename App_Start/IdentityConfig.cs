@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Persistence;
 
 namespace PrisonAdministrationSystem
 {

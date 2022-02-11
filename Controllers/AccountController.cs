@@ -12,7 +12,9 @@ using System.Web.Services.Description;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Core.ViewModels;
 
 namespace PrisonAdministrationSystem.Controllers
 {
@@ -21,16 +23,14 @@ namespace PrisonAdministrationSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountController()
+        public AccountController(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+
 
         public ApplicationSignInManager SignInManager
         {
@@ -140,7 +140,7 @@ namespace PrisonAdministrationSystem.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Warden")]
         public ActionResult Register()
         {
             var status = new List<MarritalStatus>()
@@ -151,11 +151,14 @@ namespace PrisonAdministrationSystem.Controllers
                 new MarritalStatus{Id = 4, Name = "Separated"},
                 new MarritalStatus{Id = 5, Name = "Widow/Widower"}
             };
-
+           
             var viewModel = new RegisterViewModel
             {
                 StatusOptions = status.ToList()
             };
+            var userId = User.Identity.GetUserId();
+            var user = _unitOfWork.users.GetUser(userId);
+            viewModel.User = user;
 
             return View(viewModel);
         }
@@ -163,7 +166,7 @@ namespace PrisonAdministrationSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Warden")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -190,9 +193,8 @@ namespace PrisonAdministrationSystem.Controllers
                     PhoneNumber = model.PhoneNumber
                 };
 
-              
-                    user.Passport = string.Format(user.Id + "Profile.jpg");
-                    model.Passport.SaveAs(Server.MapPath("//Content//Staff// ") + user.Passport);
+                user.SavePassport(model.Passport);
+                   
               
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -212,6 +214,8 @@ namespace PrisonAdministrationSystem.Controllers
                 AddErrors(result);
            
             }
+            var userId = User.Identity.GetUserId();
+            var userr = _unitOfWork.users.GetUser(userId);
             var status = new List<MarritalStatus>()
             {
                 new MarritalStatus{Id = 1, Name = "Single"},
@@ -221,6 +225,7 @@ namespace PrisonAdministrationSystem.Controllers
                 new MarritalStatus{Id = 5, Name = "Widow/Widower"}
             };
             model.StatusOptions = status.ToList();
+            model.User = userr;
             // If we got this far, something failed, redisplay form
             return View(model);
         }

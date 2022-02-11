@@ -3,18 +3,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Core.Repository;
+using PrisonAdministrationSystem.Core.ViewModels;
 
 namespace PrisonAdministrationSystem.Controllers
 {
     [Authorize]
     public class CellController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CellController()
+        public CellController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Create()
@@ -24,20 +27,26 @@ namespace PrisonAdministrationSystem.Controllers
             {
                 OccupantNumber = 0
             };
-            _context.Cells.Add(cell);
-            _context.SaveChanges();
+            
+            _unitOfWork.cells.Add(cell);
+           _unitOfWork.Complete();
 
             return RedirectToAction("Cells", "Cell");
         }
         public ActionResult Cells()
         {
-            var cells = _context.Cells.ToList();
+            var cells = _unitOfWork.cells.GetAllCells();
+            foreach (var cell in cells)
+            {
+                cell.OccupantNumber = _unitOfWork.inmates.GetCellOccupants(cell.Id).Count();
+            }
+            _unitOfWork.Complete();
             var viewModel = new CellsViewModel
             {
                 Cells = cells
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View("Cells",viewModel);
         }

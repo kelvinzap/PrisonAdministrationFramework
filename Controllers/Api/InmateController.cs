@@ -4,33 +4,33 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Persistence;
 
 namespace PrisonAdministrationSystem.Controllers.Api
 {
     [Authorize]
     public class InmateController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public InmateController()
+        public InmateController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
+
         }
 
         [HttpDelete]
         public IHttpActionResult Remove(string Id)
         {
-            var inmate = _context.Inmates
-                .Single(p => p.Id == Id);
+            var inmate = _unitOfWork.inmates.GetInmate(Id);
 
             if (inmate == null)
                 return BadRequest();
 
             inmate.Remove();
-            var cell = _context.Cells.Single(p => p.Id == inmate.CellId);
-            cell.OccupantNumber -= 1;
-            _context.SaveChanges();
+            
+            _unitOfWork.Complete();
 
             return Ok();
         }

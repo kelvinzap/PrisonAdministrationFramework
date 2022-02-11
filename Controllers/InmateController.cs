@@ -7,17 +7,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Core.Repository;
+using PrisonAdministrationSystem.Core.ViewModels;
 
 namespace PrisonAdministrationSystem.Controllers
 {
     public class InmateController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public InmateController()
+        private readonly IUnitOfWork _unitOfWork;
+        public InmateController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
      
         [Authorize]
@@ -25,10 +27,10 @@ namespace PrisonAdministrationSystem.Controllers
         {
             var viewModel = new InmateFormViewModel
             {
-                Cells = _context.Cells.ToList()
+                Cells = _unitOfWork.cells.GetAllCells()
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View("Create", viewModel);
         }
@@ -41,9 +43,9 @@ namespace PrisonAdministrationSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                formViewModel.Cells = _context.Cells.ToList();
+                formViewModel.Cells = _unitOfWork.cells.GetAllCells();
                 var userId = User.Identity.GetUserId();
-                var user = _context.Users.Single(p => p.Id == userId);
+                var user = _unitOfWork.users.GetUser(userId);
                 formViewModel.User = user;
                 return View("Create", formViewModel);
             }
@@ -70,22 +72,20 @@ namespace PrisonAdministrationSystem.Controllers
             
             if (formViewModel.FrontProfile != null)
             {
-                    inmate.FrontProfile = string.Format(inmate.Id+ Path.GetFileName(formViewModel.FrontProfile.FileName));
-                    formViewModel.FrontProfile.SaveAs(Server.MapPath("//Content//Inmate//FrontProfile// ") + inmate.FrontProfile);
+                inmate.SaveFrontProfile(formViewModel.FrontProfile);
             }
                
             if (formViewModel.SideProfile != null)
             {
-                    inmate.SideProfile = string.Format(inmate.Id+ Path.GetFileName(formViewModel.SideProfile.FileName));
-                    formViewModel.SideProfile.SaveAs(Server.MapPath("//Content//Inmate//SideProfile// ") + inmate.SideProfile);
+                inmate.SaveSideProfile(formViewModel.SideProfile);
             }
 
           
             inmate.GetDateOfRelease();
-            var cell = _context.Cells.Single(p => p.Id == inmate.CellId);
-            cell.OccupantNumber += 1;
-            _context.Inmates.Add(inmate);
-            _context.SaveChanges();
+        
+            
+            _unitOfWork.inmates.Add(inmate);
+            _unitOfWork.Complete();
 
                 return RedirectToAction("Inmates", "Inmate");
           
@@ -94,21 +94,8 @@ namespace PrisonAdministrationSystem.Controllers
         [Authorize]
         public ActionResult Inmates(string query = null)
         {
-            var inmatees = _context.Inmates.ToList();
+            var inmates = _unitOfWork.inmates.GetAllInmates();
            
-            foreach (var inmate in inmatees)
-            {
-                var dateRelease = DateTime.Parse(inmate.DateOfRelease);
-                if (dateRelease <= DateTime.Now)
-                {
-                    inmate.Remove();
-                }
-            }
-
-            _context.SaveChanges();
-            var inmates = _context.Inmates
-                .Where(p => !p.HasLeft)
-                .ToList();
             if (!String.IsNullOrWhiteSpace(query))
             {
                 inmates = inmates
@@ -135,16 +122,16 @@ namespace PrisonAdministrationSystem.Controllers
 
           
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
-            viewModel.User = user;
+            var user = _unitOfWork.users.GetUser(userId);
+            viewModel.User = user; 
+            _unitOfWork.Complete();
             return View(viewModel);
         }
 
         [Authorize]
         public ActionResult Edit(string Id)
         {
-            var inmate = _context.Inmates
-                .Single(p => p.Id == Id);
+            var inmate = _unitOfWork.inmates.GetInmate(Id);
 
             if (inmate == null)
                 return HttpNotFound();
@@ -162,7 +149,7 @@ namespace PrisonAdministrationSystem.Controllers
                 Offense = inmate.Offense,
                 DateOfIncarceration = inmate.DateOfIncarceration.ToString("d MMM yyyy"),
                 TimeOfIncarceration = inmate.DateOfIncarceration.ToString("HH:mm"),
-                Cells = _context.Cells.ToList(),
+                Cells = _unitOfWork.cells.GetAllCells(),
                 Height = inmate.Height,
                 Weight = inmate.Weight,
                 Complexion = inmate.Complexion,
@@ -172,7 +159,7 @@ namespace PrisonAdministrationSystem.Controllers
                 BankVerificationNumber = inmate.BankVerificationNumber
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View("Create", viewModel);
 
@@ -184,35 +171,34 @@ namespace PrisonAdministrationSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Cells = _context.Cells.ToList();
+                model.Cells = _unitOfWork.cells.GetAllCells();
                 var userId = User.Identity.GetUserId();
-                var user = _context.Users.Single(p => p.Id == userId);
+                var user = _unitOfWork.users.GetUser(userId);
                 model.User = user;
                 return View("Create", model);
             }
 
-            var inmate= _context.Inmates
-                .Single(p => p.Id == model.Id);
+            var inmate = _unitOfWork.inmates.GetInmate(model.Id);
 
             if (inmate == null)
                 return HttpNotFound();
 
             inmate.Modify(model);
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return RedirectToAction("Inmates", "Inmate");
         }
 
         [Authorize]
         public ActionResult Details(string Id, string query)
         {
-            var inmate = _context.Inmates.Single(p => p.Id == Id);
+            var inmate = _unitOfWork.inmates.GetInmate(Id);
 
             if (inmate == null)
                 return HttpNotFound();
 
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             var viewModel = new InmateDetailsViewModel
             {
                 Inmate = inmate,
@@ -227,13 +213,11 @@ namespace PrisonAdministrationSystem.Controllers
         {
             var inmates = new InmatesViewModel
             {
-                Inmates = _context.Inmates
-                    .Where(p => p.HasLeft)
-                    .ToList()
+                Inmates = _unitOfWork.inmates.GetAllExInmates()
             };
                
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             inmates.User = user;
             return View(inmates);
         }

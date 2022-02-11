@@ -1,4 +1,4 @@
-﻿@model PrisonAdministrationSystem.Models.HomeViewModel
+﻿@model PrisonAdministrationSystem.Core.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,7 +8,11 @@
 }
 
 <div class="body-header">
-<h2 class="form-header-text">Dashboard</h2>
+    <h2 class="form-header-text">Dashboard</h2>
+    @if (Request.IsAuthenticated && User.IsInRole("Warden"))
+    {
+        <div class="add-button-blue"><a class=" btn btn-primary" href="@Url.Action("Register", "Account")">Add Admin <i class="fa fa-user-plus" aria-hidden="true"></i></a></div>
+    }
 </div>
 
 <div class="information">

@@ -4,24 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using PrisonAdministrationSystem.Dtos;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Persistence;
 
 namespace PrisonAdministrationSystem.Controllers.Api
 {
     [Authorize]
     public class StaffController : ApiController
     {
-        public readonly ApplicationDbContext _context;
-        
-        public StaffController()
+        public readonly IUnitOfWork _unitOfWork;
+
+        public StaffController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
         [HttpDelete]
         public IHttpActionResult Remove(string Id)
         {
-            var staff = _context.Staffs.Single(p => p.Id == Id);
+            var staff = _unitOfWork.staffs.GetStaff(Id);
 
             if (staff == null)
                 return BadRequest();
@@ -31,7 +31,7 @@ namespace PrisonAdministrationSystem.Controllers.Api
 
             staff.Remove();
             
-            _context.SaveChanges();
+           _unitOfWork.Complete();
             return Ok();
 
         }

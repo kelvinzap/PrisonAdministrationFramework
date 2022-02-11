@@ -6,17 +6,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using PrisonAdministrationSystem.Models;
+using PrisonAdministrationSystem.Core;
+using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationSystem.Core.Repository;
+using PrisonAdministrationSystem.Core.ViewModels;
 
 namespace PrisonAdministrationSystem.Controllers
 {
     public class StaffController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public StaffController()
+        public StaffController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
         // GET: Staff
         [Authorize]
@@ -36,10 +39,10 @@ namespace PrisonAdministrationSystem.Controllers
             {
                 Heading = "Add a new Staff",
                 StatusOptions = status.ToList(),
-                StaffRoles = _context.StaffRoles.ToList()
+                StaffRoles = _unitOfWork.staffRoles.GetAllStaffRoles()
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View("CreateStaff", viewModel);
         }
@@ -59,9 +62,9 @@ namespace PrisonAdministrationSystem.Controllers
                     new MarritalStatus{Id = 5, Name = "Widow/Widower"}
                 };
                 model.StatusOptions = status.ToList();
-                model.StaffRoles = _context.StaffRoles.ToList();
+                model.StaffRoles = _unitOfWork.staffRoles.GetAllStaffRoles();
                 var userId = User.Identity.GetUserId();
-                var user = _context.Users.Single(p => p.Id == userId);
+                var user = _unitOfWork.users.GetUser(userId);
                 model.User = user;
                 return View("CreateStaff", model);
             }
@@ -86,21 +89,19 @@ namespace PrisonAdministrationSystem.Controllers
                 Email = model.Email
                 
             };
-            staff.Passport = string.Format(staff.Id + Path.GetFileName(model.Passport.FileName));
-            model.Passport.SaveAs(Server.MapPath("//Content//Staff// ") + staff.Passport);
+            staff.SavePassport(model.Passport);
+           
+
+            _unitOfWork.staffs.Add(staff);
+            _unitOfWork.Complete();
           
-            _context.Staffs.Add(staff);
-            _context.SaveChanges();
             return RedirectToAction("Staffs", "Staff");
         }
 
         [Authorize]
         public ActionResult Staffs(string query = null)
         {
-            var staffs = _context.Staffs
-                .Where(p => !p.HasLeft)
-                .Include(p => p.Role)
-                .ToList();
+            var staffs = _unitOfWork.staffs.GetAllStaffsWithRoles();
             if (!String.IsNullOrWhiteSpace(query))
             {
                 staffs = staffs
@@ -122,7 +123,7 @@ namespace PrisonAdministrationSystem.Controllers
                 SearchTerm = query
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View(viewModel);
         }
@@ -130,8 +131,7 @@ namespace PrisonAdministrationSystem.Controllers
         [Authorize]
         public ActionResult Edit(string Id)
         {
-            var staff = _context.Staffs
-                .Single(p => p.Id == Id);
+            var staff = _unitOfWork.staffs.GetStaff(Id);
             
             if (staff == null)
                 return HttpNotFound();
@@ -165,12 +165,12 @@ namespace PrisonAdministrationSystem.Controllers
                 RoleId = staff.RoleId,
                 PhoneNumber = staff.PhoneNumber,
                 StatusOptions = status,
-                StaffRoles = _context.StaffRoles.ToList(),
+                StaffRoles = _unitOfWork.staffRoles.GetAllStaffRoles(),
                 Email = staff.Email
                 
             };
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             viewModel.User = user;
             return View("CreateStaff", viewModel);
 
@@ -192,29 +192,28 @@ namespace PrisonAdministrationSystem.Controllers
                     new MarritalStatus{Id = 5, Name = "Widow/Widower"}
                 };
                 viewModel.StatusOptions = status.ToList();
-                viewModel.StaffRoles = _context.StaffRoles.ToList();
+                viewModel.StaffRoles = _unitOfWork.staffRoles.GetAllStaffRoles();
                 var userId = User.Identity.GetUserId();
-                var user = _context.Users.Single(p => p.Id == userId);
+                var user = _unitOfWork.users.GetUser(userId);
                 viewModel.User = user;
                 return View("CreateStaff", viewModel);
             }
 
-            var staff = _context.Staffs
-                .Single(p => p.Id == viewModel.Id);
+            var staff = _unitOfWork.staffs.GetStaff(viewModel.Id);
 
             if (staff == null)
                 return HttpNotFound();
 
             staff.Modify(viewModel);
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return RedirectToAction("Staffs", "Staff");
         }
 
         [Authorize]
         public ActionResult Details(string Id)
         {
-            var staff = _context.Staffs.Where(i=>i.Id == Id).Include(i=>i.Role).SingleOrDefault();
+            var staff = _unitOfWork.staffs.GetStaffWithRoles(Id);
             
             if (staff == null)
                 return HttpNotFound();
@@ -223,7 +222,7 @@ namespace PrisonAdministrationSystem.Controllers
                 return new HttpUnauthorizedResult();
 
             var userId = User.Identity.GetUserId();
-            var user = _context.Users.Single(p => p.Id == userId);
+            var user = _unitOfWork.users.GetUser(userId);
             var viewModel = new StaffDetailsViewModel
             {
                 User = user,
