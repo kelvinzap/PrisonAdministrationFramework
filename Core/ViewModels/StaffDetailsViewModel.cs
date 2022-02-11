@@ -1,6 +1,6 @@
-﻿using PrisonAdministrationSystem.Core.Models;
+﻿using PrisonAdministrationFramework.Core.Models;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class StaffDetailsViewModel
     {

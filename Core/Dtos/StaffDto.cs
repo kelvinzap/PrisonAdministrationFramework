@@ -1,4 +1,4 @@
-﻿namespace PrisonAdministrationSystem.Core.Dtos
+﻿namespace PrisonAdministrationFramework.Core.Dtos
 {
     public class StaffDto
     {

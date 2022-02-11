@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace PrisonAdministrationSystem.Core.Validations
+namespace PrisonAdministrationFramework.Core.Validations
 {
     public class ValidTime : ValidationAttribute
     {

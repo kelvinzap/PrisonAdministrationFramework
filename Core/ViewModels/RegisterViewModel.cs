@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Core.Validations;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Core.Validations;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class RegisterViewModel
     {

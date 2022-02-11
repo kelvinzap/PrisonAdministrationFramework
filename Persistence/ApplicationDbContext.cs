@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Persistence.EntityConfiguration;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Persistence.EntityConfiguration;
 
-namespace PrisonAdministrationSystem.Persistence
+namespace PrisonAdministrationFramework.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

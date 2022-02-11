@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PrisonAdministrationSystem.Core.Validations
+namespace PrisonAdministrationFramework.Core.Validations
 {
     public class FrontProfileRequired : ValidationAttribute
     {

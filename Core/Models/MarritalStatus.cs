@@ -1,4 +1,4 @@
-﻿namespace PrisonAdministrationSystem.Core.Models
+﻿namespace PrisonAdministrationFramework.Core.Models
 {
     public class MarritalStatus
     {

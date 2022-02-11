@@ -3,12 +3,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using PrisonAdministrationSystem.Core;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Core.Repository;
-using PrisonAdministrationSystem.Core.ViewModels;
+using PrisonAdministrationFramework.Core;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Core.ViewModels;
+using PrisonAdministrationFramework.Core.Repository;
 
-namespace PrisonAdministrationSystem.Controllers
+namespace PrisonAdministrationFramework.Controllers
 {
     [Authorize]
     public class CellController : Controller

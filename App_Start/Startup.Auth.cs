@@ -5,10 +5,10 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Persistence;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Persistence;
 
-namespace PrisonAdministrationSystem
+namespace PrisonAdministrationFramework
 {
     public partial class Startup
     {

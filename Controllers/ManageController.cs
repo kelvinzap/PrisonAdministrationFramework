@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PrisonAdministrationSystem.Core.ViewModels;
+using PrisonAdministrationFramework.Core.ViewModels;
 
-namespace PrisonAdministrationSystem.Controllers
+namespace PrisonAdministrationFramework.Controllers
 {
     [Authorize]
     public class ManageController : Controller

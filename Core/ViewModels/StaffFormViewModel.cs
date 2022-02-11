@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
-using PrisonAdministrationSystem.Controllers;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Core.Validations;
+using PrisonAdministrationFramework.Controllers;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Core.Validations;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class StaffFormViewModel
     {

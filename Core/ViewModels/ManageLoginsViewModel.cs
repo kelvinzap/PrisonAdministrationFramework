@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class ManageLoginsViewModel
     {

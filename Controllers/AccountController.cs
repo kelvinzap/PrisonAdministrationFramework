@@ -12,11 +12,11 @@ using System.Web.Services.Description;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PrisonAdministrationSystem.Core;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Core.ViewModels;
+using PrisonAdministrationFramework.Core;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Core.ViewModels;
 
-namespace PrisonAdministrationSystem.Controllers
+namespace PrisonAdministrationFramework.Controllers
 {
     [Authorize]
     public class AccountController : Controller

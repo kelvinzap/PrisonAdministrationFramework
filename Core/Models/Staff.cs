@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Web;
 using Grpc.Core;
-using PrisonAdministrationSystem.Core.ViewModels;
+using PrisonAdministrationFramework.Core.ViewModels;
 
-namespace PrisonAdministrationSystem.Core.Models
+namespace PrisonAdministrationFramework.Core.Models
 {
     public class Staff
     {

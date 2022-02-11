@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Core.Repository;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Core.Repository;
 
-namespace PrisonAdministrationSystem.Persistence.Repository
+namespace PrisonAdministrationFramework.Persistence.Repository
 {
     public class ApplicationUserRepository : IApplicationUserRepository
     {

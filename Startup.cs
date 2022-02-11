@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(PrisonAdministrationSystem.Startup))]
-namespace PrisonAdministrationSystem
+[assembly: OwinStartupAttribute(typeof(PrisonAdministrationFramework.Startup))]
+namespace PrisonAdministrationFramework
 {
     public partial class Startup
     {

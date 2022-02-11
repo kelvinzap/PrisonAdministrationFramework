@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 
-namespace PrisonAdministrationSystem.Migrations
+namespace PrisonAdministrationFramework.Migrations
 {
     public partial class CreateInmateTable : DbMigration
     {

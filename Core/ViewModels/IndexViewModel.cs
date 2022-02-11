@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class IndexViewModel
     {

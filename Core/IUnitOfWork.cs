@@ -1,6 +1,6 @@
-﻿using PrisonAdministrationSystem.Core.Repository;
+﻿using PrisonAdministrationFramework.Core.Repository;
 
-namespace PrisonAdministrationSystem.Core
+namespace PrisonAdministrationFramework.Core
 {
     public interface IUnitOfWork
     {

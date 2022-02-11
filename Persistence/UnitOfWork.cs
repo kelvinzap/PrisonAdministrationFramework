@@ -1,8 +1,8 @@
-﻿using PrisonAdministrationSystem.Core;
-using PrisonAdministrationSystem.Core.Repository;
-using PrisonAdministrationSystem.Persistence.Repository;
+﻿using PrisonAdministrationFramework.Core;
+using PrisonAdministrationFramework.Core.Repository;
+using PrisonAdministrationFramework.Persistence.Repository;
 
-namespace PrisonAdministrationSystem.Persistence
+namespace PrisonAdministrationFramework.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {

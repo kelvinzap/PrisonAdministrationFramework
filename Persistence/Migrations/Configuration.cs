@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
-using PrisonAdministrationSystem.Persistence;
+using PrisonAdministrationFramework.Persistence;
 
-namespace PrisonAdministrationSystem.Migrations
+namespace PrisonAdministrationFramework.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {

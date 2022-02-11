@@ -1,9 +1,9 @@
 using Ninject.Web.Common.WebHost;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PrisonAdministrationSystem.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(PrisonAdministrationSystem.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PrisonAdministrationFramework.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(PrisonAdministrationFramework.App_Start.NinjectWebCommon), "Stop")]
 
-namespace PrisonAdministrationSystem.App_Start
+namespace PrisonAdministrationFramework.App_Start
 {
     using System;
     using System.Web;

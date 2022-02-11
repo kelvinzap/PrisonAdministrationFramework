@@ -1,4 +1,4 @@
-﻿namespace PrisonAdministrationSystem.Core.ViewModels
+﻿namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class FactorViewModel
     {

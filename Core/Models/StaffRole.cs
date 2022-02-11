@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PrisonAdministrationSystem.Core.Models
+namespace PrisonAdministrationFramework.Core.Models
 {
     public class StaffRole
     {

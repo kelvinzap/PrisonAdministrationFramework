@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using PrisonAdministrationSystem.Core;
-using PrisonAdministrationSystem.Persistence;
+using PrisonAdministrationFramework.Core;
+using PrisonAdministrationFramework.Persistence;
 
-namespace PrisonAdministrationSystem.Controllers.Api
+namespace PrisonAdministrationFramework.Controllers.Api
 {
     [Authorize]
     public class StaffController : ApiController

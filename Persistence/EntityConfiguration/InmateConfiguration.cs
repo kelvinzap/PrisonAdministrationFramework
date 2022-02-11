@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Web;
-using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationFramework.Core.Models;
 
-namespace PrisonAdministrationSystem.Persistence.EntityConfiguration
+namespace PrisonAdministrationFramework.Persistence.EntityConfiguration
 {
     public class InmateConfiguration : EntityTypeConfiguration<Inmate>
     {

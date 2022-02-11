@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace PrisonAdministrationSystem
+namespace PrisonAdministrationFramework
 {
     public static class WebApiConfig
     {

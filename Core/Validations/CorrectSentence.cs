@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace PrisonAdministrationSystem.Core.Validations
+namespace PrisonAdministrationFramework.Core.Validations
 {
     public class CorrectSentence :ValidationAttribute
     {

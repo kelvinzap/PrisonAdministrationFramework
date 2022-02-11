@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace PrisonAdministrationSystem.Core.Models
+namespace PrisonAdministrationFramework.Core.Models
 {
     public class Cell
     {

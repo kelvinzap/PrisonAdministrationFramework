@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PrisonAdministrationSystem.Core.ViewModels
+namespace PrisonAdministrationFramework.Core.ViewModels
 {
     public class ConfigureTwoFactorViewModel
     {

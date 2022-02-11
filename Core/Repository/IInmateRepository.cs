@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PrisonAdministrationSystem.Core.Models;
+using PrisonAdministrationFramework.Core.Models;
 
-namespace PrisonAdministrationSystem.Core.Repository
+namespace PrisonAdministrationFramework.Core.Repository
 {
     public interface IInmateRepository
     {

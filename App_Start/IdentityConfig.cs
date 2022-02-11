@@ -10,10 +10,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using PrisonAdministrationSystem.Core.Models;
-using PrisonAdministrationSystem.Persistence;
+using PrisonAdministrationFramework.Core.Models;
+using PrisonAdministrationFramework.Persistence;
 
-namespace PrisonAdministrationSystem
+namespace PrisonAdministrationFramework
 {
     public class EmailService : IIdentityMessageService
     {
